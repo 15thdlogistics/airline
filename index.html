@@ -32,7 +32,7 @@
                     },
                     fontFamily: { 
                         sync: ['Syncopate', 'sans-serif'], 
-                        monument: ['Monument Extended', 'sans-serif'], 
+                        monument: ['"Monument Extended"', 'sans-serif'], 
                         lexend: ['Lexend', 'sans-serif']
                     }
                 }
@@ -43,7 +43,7 @@
     <style>
         body, html { margin: 0; padding: 0; background: #F9FAFB; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* TECHNICAL BACKGROUND PATTERN (WHITE/SLATE DEFAULT) */
+        /* TECHNICAL BACKGROUND PATTERN */
         .tech-grid {
             background-image: linear-gradient(rgba(24, 119, 242, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 119, 242, 0.02) 1px, transparent 1px);
             background-size: 30px 30px;
@@ -90,6 +90,16 @@
             line-height: 1.75; 
         }
 
+        .font-monument-regular {
+            font-family: '"Monument Extended"', sans-serif;
+            font-weight: 400 !important;
+        }
+
+        .font-syncopate {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+        }
+
         .animate-scroll { display: flex; width: max-content; }
         
         .premium-card {
@@ -103,7 +113,7 @@
         }
 
         .video-gradient {
-            background: linear-gradient(180deg, rgba(3,5,7,0) 0%, rgba(3,5,7,0.85) 100%);
+            background: linear-gradient(180deg, rgba(3,5,7,0.1) 0%, rgba(3,5,7,0.85) 100__);
         }
         
         /* Custom scrollbars */
@@ -123,12 +133,20 @@
 
     <div class="radar-line"></div>
 
-    <!-- Navigation Header -->
+    <!-- Navigation Header with anchor routes -->
     <nav class="fixed top-0 w-full z-[100] py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="flex items-center space-x-3">
             <img src="https://uploads.onecompiler.io/43z22g7dk/44b5wdtpn/1000301979.png" class="h-5 md:h-6" alt="15D Wings">
             <span class="text-gray-300 hidden md:inline">|</span>
             <span class="ui-sync text-[8px] text-gray-400 tracking-widest hidden md:inline">OPERATOR ALIGNMENT</span>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-slate-600 font-lexend">
+            <a href="#about-us" class="hover:text-fbblue transition">About Us</a>
+            <a href="#coordination-brief" class="hover:text-fbblue transition">Coordination Brief</a>
+            <a href="#doctrines" class="hover:text-fbblue transition">Doctrines</a>
+            <a href="#compliance" class="hover:text-fbblue transition">Legal & Compliance</a>
         </div>
         
         <div class="flex items-center space-x-4">
@@ -138,488 +156,553 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
-    <div class="tech-grid min-h-screen pt-24 md:pt-36 pb-20 px-4 md:px-10 max-w-[1450px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <!-- Cinematic Header Segment with Laying Video Background -->
+    <div class="relative w-full overflow-hidden bg-slate-950 mt-16 md:mt-20">
+        <!-- Background loop video -->
+        <video class="absolute top-0 left-0 w-full h-full object-cover opacity-65 mix-blend-screen" autoplay loop muted playsinline poster="https://placehold.co/1920x1080/030507/ffffff?text=15D+Wings+Cinema">
+            <source src="https://res.cloudinary.com/dfbweqelf/video/upload/v1776287672/Luxury_Aviation_Brand_Film_Generation_paq1u2.mp4" type="video/mp4">
+        </video>
+        <!-- Elegant overlay gradients -->
+        <div class="absolute inset-0 bg-gradient-to-t from-nearblack via-nearblack/45 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-nearblack via-transparent to-nearblack/30"></div>
         
-        <!-- Left Side: Interactive Portal Status & Quiz Framework -->
-        <div class="lg:col-span-7 space-y-12">
+        <!-- Hero Title Content Grid -->
+        <div class="relative z-10 max-w-[1450px] mx-auto px-6 md:px-12 py-20 md:py-32 flex flex-col justify-end min-h-[500px] md:min-h-[640px]">
+            <span class="text-xs ui-sync text-fbblue bg-fbblue/20 backdrop-blur-md border border-fbblue/30 px-3 py-1.5 rounded-sm inline-block font-bold w-fit mb-6">SYSTEM DECREE</span>
             
-            <!-- Hero Title Block (Humor-Driven sentence-case Lexend bold heading) -->
-            <header class="space-y-4">
-                <span class="text-xs ui-sync text-fbblue bg-fbblue/5 border border-fbblue/10 px-3 py-1 inline-block">SYSTEM DECREE</span>
-                <h1 class="header-lexend text-3xl md:text-4xl text-slate-900">
-                    Your dispatch team was hired to fly aircraft, not chase screenshots.
-                </h1>
-                <p class="body-lexend text-base max-w-2xl text-gray-600">
-                    Every operator knows the story. A "confirmed client" appears. The broker sounds confident. The crew is alerted. The permits start moving. Fuel planning begins. Then the money disappears into another dimension. 15D Wings was built to solve a simple problem: No operator should mobilize resources based on promises. Our Architecture of Certainty ensures that mission activation, payment verification, compliance validation, and dispatch readiness happen through structured systems instead of assumptions.<br><br>Or in simpler terms:<br><strong>If our dashboard says go, the money is real.</strong>
-                </p>
-            </header>
-
-            <!-- Pre-Access Block (Triggering the Coursera-Style Video Academy) -->
-            <div id="academy-trigger-box" class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl relative space-y-6 shadow-sm">
-                <div class="flex items-center space-x-4">
-                    <div class="bg-blue-50 p-3 rounded-full text-fbblue">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg text-slate-950">15D Wings Operator Briefing</h3>
-                        <p class="text-xs text-gray-500 font-lexend">Before we hand you live charter opportunities, we'd like to make sure we're speaking the same language. Not aviation language. Certainty language.</p>
-                    </div>
-                </div>
-
-                <p class="text-xs text-gray-600 leading-relaxed font-light">
-                    Inside these short modules you'll learn why:<br>
-                    • Screenshots don't activate missions.<br>
-                    • Excuses don't override telemetry.<br>
-                    • Delays don't automatically become cancellations.<br>
-                    • Compliance isn't binary.<br>
-                    • Backup plans should already exist before they're needed.<br><br>
-                    Five short modules. No consultants. No corporate poetry. Just how the machine thinks.
-                </p>
-
-                <div>
-                    <button onclick="revealAcademy()" class="w-full md:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-xs ui-sync rounded-xl shadow-md transition duration-300">
-                        <span>LAUNCH ONBOARDING BRIEFING</span>
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Coursera-Style Video & Module System (Revealed by Button Click) -->
-            <div id="academy-portal" class="hidden border border-gray-200 rounded-3xl overflow-hidden bg-white shadow-xl grid grid-cols-1 md:grid-cols-12">
-                
-                <!-- Left Column: Video Screen Context -->
-                <div class="md:col-span-7 bg-slate-950 p-6 flex flex-col justify-between min-h-[340px] md:min-h-[480px] relative">
-                    <div class="flex justify-between items-center z-10">
-                        <span class="text-[9px] font-mono tracking-widest text-fbblue bg-fbblue/10 px-2.5 py-1" id="active-module-tag">MODULE 1 / 5</span>
-                        <span class="text-[10px] font-mono text-gray-400" id="video-countdown">00:00</span>
-                    </div>
-
-                    <!-- Mock Dynamic Visual Player -->
-                    <div class="my-6 text-center space-y-4 z-10">
-                        <div class="inline-flex h-14 w-14 bg-fbblue/10 rounded-full items-center justify-center border border-fbblue/20 text-fbblue animate-pulse">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <h4 class="font-semibold text-white text-sm" id="main-player-title">The Plane Doesn't Care About Excuses</h4>
-                        <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed" id="main-player-desc">Things happen. Crew members get delayed. Permits take longer. Vehicles break down. Phones mysteriously stop ringing. The Architecture of Certainty assumes problems will happen. That's why contingency planning begins before activation, not after.</p>
-                    </div>
-
-                    <!-- Progress bar -->
-                    <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden z-10 relative">
-                        <div class="bg-fbblue h-full w-0" id="academy-video-progress"></div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Interactive Course Modules (Google Coursera Style) -->
-                <div class="md:col-span-5 bg-slate-50 border-t md:border-t-0 md:border-l border-gray-100 flex flex-col justify-between">
-                    <div class="p-5 border-b border-gray-200">
-                        <h3 class="font-bold text-xs ui-sync text-slate-800">MODULE SYLLABUS</h3>
-                        <p class="text-[11px] text-gray-400">Every completed module unlocks another layer of the system's decision-making logic.</p>
-                    </div>
-
-                    <!-- Modules List -->
-                    <div class="divide-y divide-gray-100 overflow-y-auto max-h-[300px]">
-                        
-                        <!-- Module 1 -->
-                        <button onclick="loadModule(1, 'The Plane Doesn\'t Care About Excuses', 'Things happen. Crew members get delayed. Permits take longer. Vehicles break down. Phones mysteriously stop ringing. The Architecture of Certainty assumes problems will happen. That\'s why contingency planning begins before activation, not after.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 bg-white" id="mod-btn-1">
-                            <span class="text-xs font-mono font-bold text-fbblue" id="mod-status-1">●</span>
-                            <div class="space-y-0.5">
-                                <h4 class="text-xs font-bold text-slate-900">1. The Plane Doesn't Care About Excuses</h4>
-                                <p class="text-[10px] text-gray-400">Why we bypass verbal stories.</p>
-                            </div>
-                        </button>
-
-                        <!-- Module 2 -->
-                        <button onclick="loadModule(2, 'Screenshots Have Never Purchased Jet A-1', 'A payment receipt is not a payment. A promise is not a payment. A broker\'s confidence is definitely not a payment. This module explains why the system only listens to verified funds.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-2" disabled>
-                            <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-2">○</span>
-                            <div class="space-y-0.5">
-                                <h4 class="text-xs font-bold text-slate-900">2. Screenshots Have Never Purchased Jet A-1</h4>
-                                <p class="text-[10px] text-gray-400">Verified funds vs payment promises.</p>
-                            </div>
-                        </button>
-
-                        <!-- Module 3 -->
-                        <button onclick="loadModule(3, 'Reliability Leaves Footprints', 'Every operator says they\'re reliable. Every dispatcher says they\'re responsive. Every broker says their client is serious. The ledger ignores claims and tracks behaviour instead.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-3" disabled>
-                            <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-3">○</span>
-                            <div class="space-y-0.5">
-                                <h4 class="text-xs font-bold text-slate-900">3. Reliability Leaves Footprints</h4>
-                                <p class="text-[10px] text-gray-400">The platform tracks pure behavioural metrics.</p>
-                            </div>
-                        </button>
-
-                        <!-- Module 4 -->
-                        <button onclick="loadModule(4, 'Not Every Mission Is Equally Alive', 'A conversation is not a mission. A quote is not a mission. A deposit is not a mission. A mission becomes increasingly real as certainty increases. This module explains how activation tiers work.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-4" disabled>
-                            <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-4">○</span>
-                            <div class="space-y-0.5">
-                                <h4 class="text-xs font-bold text-slate-900">4. Not Every Mission Is Equally Alive</h4>
-                                <p class="text-[10px] text-gray-400">Unpacking our soft, warm, and full tiers.</p>
-                            </div>
-                        </button>
-
-                        <!-- Module 5 -->
-                        <button onclick="loadModule(5, 'Hope Is Not A Backup Plan', 'Most operational disasters start with one sentence: \&quot;We didn\'t think that would happen.\&quot; This module explains why redundancy exists throughout the platform.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-5" disabled>
-                            <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-5">○</span>
-                            <div class="space-y-0.5">
-                                <h4 class="text-xs font-bold text-slate-900">5. Hope Is Not A Backup Plan</h4>
-                                <p class="text-[10px] text-gray-400">System redundancy layers uncovered.</p>
-                            </div>
-                        </button>
-
-                    </div>
-
-                    <div class="p-4 bg-slate-100 text-center">
-                        <button id="academy-next-btn" onclick="simulateActiveModule()" class="w-full py-2 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-[10px] ui-sync rounded">
-                            START ACTIVE CLIP
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Pre-Access Interactive Quiz Section -->
-            <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-2xl relative space-y-8 shadow-sm" id="quiz-section">
-                <div class="absolute top-0 right-8 transform -translate-y-1/2 bg-fbblue text-white ui-sync text-[8px] px-3 py-1 rounded-sm shadow-md">
-                    GATEWAY ASSESSMENT
-                </div>
-
-                <div class="space-y-2">
-                    <h3 class="font-bold text-lg md:text-xl text-slate-950">The Certainty Verification Check</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed font-light">
-                        No aviation platform can eliminate turbulence. But operational turbulence is optional. The following scenarios are based on real conditions that affect mission activation inside the 15D Wings ecosystem.<br><br><strong>Choose the response most aligned with our Architecture of Certainty.</strong>
-                    </p>
-                </div>
-
-                <!-- Questions Container -->
-                <div class="space-y-6" id="questions-box">
-                    
-                    <!-- Question 1 -->
-                    <div class="space-y-4 quiz-step" id="q1">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 01 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Escrow & Capital Security</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">A client provides a bank transfer receipt and confirms that funds have been sent. The funds are not yet visible within the designated mission escrow account. What is the mission status?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(1, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) Warm Activation may proceed because the client has shown proof.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(1, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) The mission remains pending until verified settlement is visible.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(1, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) Full Activation may proceed if the broker accepts responsibility.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(1, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) Crew positioning may begin while finance catches up.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 2 -->
-                    <div class="space-y-4 quiz-step hidden" id="q2">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 02 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">CCI Framework</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">A charter request requires medical monitoring personnel, specialized routing considerations, and urgent international coordination. Which CCI classification is most appropriate?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(2, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) CCI-0</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(2, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) CCI-1</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(2, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) CCI-2</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(2, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) CCI-3</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 3 -->
-                    <div class="space-y-4 quiz-step hidden" id="q3">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 03 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Activation Tiers</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">A mission has entered Warm Activation. Crew members have been alerted. Aircraft positioning has been noted. Permit preparation has begun. What activation tier currently applies?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(3, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) Tier 1 — Soft Hold</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(3, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) Tier 2 — Warm Activation</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(3, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) Tier 3 — Full Activation</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(3, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) Cooperative Re-Routing</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 4 -->
-                    <div class="space-y-4 quiz-step hidden" id="q4">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 04 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Pivot Triggers</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">A Pilot-in-Command fails to respond to platform operations requests within the required communication gate. What does the system assume?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(4, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) The pilot is probably busy.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(4, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) The operator should be called repeatedly until someone answers.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(4, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) A certainty gap exists and Pivot Protocol evaluation may begin.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(4, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) Nothing happens.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 5 -->
-                    <div class="space-y-4 quiz-step hidden" id="q5">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 05 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Five-Pillar Integrity Standard</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">Four of the Five Integrity Pillars are complete. Permits verified. Aircraft verified. Crew verified. Fuel verified. Capital Security remains incomplete. Can the mission be released?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(5, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) Yes.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(5, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) Only if the client is a repeat customer.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(5, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) Only with written broker indemnity.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(5, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) No.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 6 -->
-                    <div class="space-y-4 quiz-step hidden" id="q6">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 06 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Milestone Gates</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">An operator uploads permit documents, fuel evidence and crew declarations before the applicable milestone gates close. What operational outcome is most likely?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(6, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) Reduced certainty.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(6, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) Increased readiness scoring and uninterrupted mission progression.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(6, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) Automatic reclassification to CCI-X.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(6, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) Standby asset activation.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Question 7 -->
-                    <div class="space-y-4 quiz-step hidden" id="q7">
-                        <div class="flex justify-between items-center">
-                            <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 07 of 07</span>
-                            <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Anti-Renegotiation Protection</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-900 text-base">A mission reaches Tier 3 Full Activation. The operator then attempts to introduce additional pricing conditions and new surcharges. How does the platform respond?</h4>
-                        <div class="grid grid-cols-1 gap-3">
-                            <button onclick="answerQuestion(7, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>A) Renegotiation begins immediately.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                            </button>
-                            <button onclick="answerQuestion(7, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>B) Client approval is requested.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                            </button>
-                            <button onclick="answerQuestion(7, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>C) Mission protection protocols activate and systemic review begins.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                            </button>
-                            <button onclick="answerQuestion(7, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-xs font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                                <span>D) The surcharge is automatically accepted.</span>
-                                <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Pass State Message / Redirect Button -->
-                    <div class="space-y-6 text-center py-6 hidden" id="quiz-success">
-                        <div class="inline-flex h-16 w-16 bg-emerald-100 border border-emerald-500/30 text-emerald-600 rounded-full items-center justify-center shadow-md">
-                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        </div>
-                        <div class="space-y-2 max-w-md mx-auto">
-                            <h4 id="pass-verdict-title" class="font-extrabold text-slate-950 text-lg">OPERATIONAL ALIGNMENT CLEAR</h4>
-                            <p class="text-xs text-gray-500" id="pass-verdict-desc">
-                                Perfect score. The command engine has automatically generated your candidate code: <br><strong>[CCI-ACTIVE-2026]</strong>. Your system dashboard credentials are now unlocked.
-                            </p>
-                        </div>
-                        
-                        <div class="pt-4 max-w-sm mx-auto">
-                            <a href="https://portal.15dwings.com.ng/operator/dashboard" class="w-full block text-center py-4 bg-fbblue hover:bg-fbblue/90 text-white ui-sync text-[10px] rounded-xl font-bold tracking-[0.2em] shadow-lg shadow-fbblue/20 transition duration-300">
-                                ENTER OPERATOR DASHBOARD →
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Fail State Message -->
-                    <div class="space-y-4 text-center py-6 hidden" id="quiz-error">
-                        <div class="inline-flex h-16 w-16 bg-red-100 border border-red-500/30 text-red-600 rounded-full items-center justify-center">
-                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </div>
-                        <p class="text-xs text-red-600 font-mono">ALIGNMENT DRIFT DETECTED. RETRY CHECKLIST TO CORRECT VALUES.</p>
-                        <button onclick="resetQuiz()" class="text-xs ui-sync text-fbblue underline hover:text-slate-900">RETRY CHECKLIST SYSTEM</button>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Right Side: Value Punches & Interactive Status Map -->
-        <div class="lg:col-span-5 space-y-8">
+            <h1 class="header-lexend text-4xl md:text-6xl text-white leading-[1.1] max-w-5xl mb-6">
+                Answering 20 different brokers for the exact same flight 6 million times is not a business model.
+            </h1>
             
-            <!-- Value Prop: Plain Language Painpoints & Solutions -->
-            <div class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl space-y-6 shadow-sm">
-                <p class="ui-sync text-[9px] text-gray-400 tracking-wider">THE CORE PROBLEMS WE SOLVE FOR YOU</p>
-                
-                <!-- Problem 1 -->
-                <div class="border-b border-gray-100 pb-4 space-y-2">
-                    <span class="font-monument uppercase text-fbblue text-[11px] block tracking-wider font-semibold">01. STOP BURNING RESOURCES FOR IMAGINARY REVENUE</span>
-                    <p class="text-xs text-gray-600 font-light">
-                        If the dashboard activates a mission, the money is already secured. No guesswork. No gambling. No fuel purchased on faith.
-                    </p>
+            <h2 class="header-lexend text-2xl md:text-3xl text-slate-300 max-w-4xl mb-8 leading-snug">
+                Your dispatch team was hired to fly aircraft, not chase screenshots.
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl text-slate-300 font-light text-sm md:text-base leading-relaxed">
+                <div class="space-y-4">
+                    <p>Every operator knows the story. A "confirmed client" appears. The broker sounds confident. The crew is alerted. The permits start moving. Fuel planning begins. Everybody starts preparing. Then the money disappears into another dimension.</p>
+                    <p>And suddenly everyone is having the same conversation: <em class="text-white">"Let's just give them a little more time."</em></p>
                 </div>
-
-                <!-- Problem 2 -->
-                <div class="border-b border-gray-100 pb-4 space-y-2">
-                    <span class="font-monument uppercase text-fbblue text-[11px] block tracking-wider font-semibold">02. ONE SOURCE OF TRUTH BEATS TWENTY PHONE CALLS</span>
-                    <p class="text-xs text-gray-600 font-light">
-                        Everyone has information. Nobody has the same information. The platform removes interpretation and replaces it with visibility.
-                    </p>
-                </div>
-
-                <!-- Problem 3 -->
-                <div class="border-b border-gray-100 pb-4 space-y-2">
-                    <span class="font-monument uppercase text-fbblue text-[11px] block tracking-wider font-semibold">03. COMPLIANCE SHOULD ACTUALLY MEAN SOMETHING</span>
-                    <p class="text-xs text-gray-600 font-light">
-                        Maintaining aircraft, crews, certifications and documentation isn't cheap. Operators who invest in readiness shouldn't compete with operators who merely sound ready.
-                    </p>
-                </div>
-
-                <!-- Problem 4 -->
-                <div class="space-y-2">
-                    <span class="font-monument uppercase text-fbblue text-[11px] block tracking-wider font-semibold">04. REALITY IS MORE NUANCED THAN PASS OR FAIL</span>
-                    <p class="text-xs text-gray-600 font-light">
-                        Sometimes a document is renewing. Sometimes an inspection is pending. Sometimes life happens. The system understands shades of operational readiness without compromising safety.
-                    </p>
+                <div class="space-y-4">
+                    <p>Unfortunately, Jet A-1 does not run on optimism. Permit authorities do not process confidence. Crew duty windows do not extend themselves. Aircraft do not reposition because someone sounded convincing on WhatsApp.</p>
+                    <p>15D Wings was built to solve a simple problem: <strong>No operator should mobilize resources based on promises.</strong></p>
                 </div>
             </div>
-
-            <!-- Interactive Status Journey Map -->
-            <div class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl space-y-6 shadow-sm">
-                <p class="ui-sync text-[9px] text-gray-400 tracking-wider">YOUR PATH TO ACTIVATION</p>
-                
-                <div class="space-y-6 relative pl-6 border-l border-gray-200" id="status-map">
-                    
-                    <!-- Journey Step 1 -->
-                    <div class="relative transition duration-300 opacity-100" id="step-1">
-                        <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-fbblue flex items-center justify-center text-[8px] font-bold text-white ring-4 ring-white">1</span>
-                        <h4 class="text-xs ui-sync text-slate-900">01 — Learn How The System Thinks</h4>
-                        <p class="text-[11px] text-gray-500 font-light">Understand the operational doctrines behind mission allocation.</p>
-                    </div>
-
-                    <!-- Journey Step 2 -->
-                    <div class="relative transition duration-300 opacity-40" id="step-2">
-                        <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-2">2</span>
-                        <h4 class="text-xs ui-sync text-slate-900" id="title-2">02 — Demonstrate Alignment</h4>
-                        <p class="text-[11px] text-gray-500 font-light">Confirm that your team understands certainty-based operations.</p>
-                    </div>
-
-                    <!-- Journey Step 3 -->
-                    <div class="relative transition duration-300 opacity-40" id="step-3">
-                        <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-3">3</span>
-                        <h4 class="text-xs ui-sync text-slate-900" id="title-3">03 — Verify Your Operational Readiness</h4>
-                        <p class="text-[11px] text-gray-500 font-light">Upload certifications, fleet data and required documentation.</p>
-                    </div>
-
-                    <!-- Journey Step 4 -->
-                    <div class="relative transition duration-300 opacity-40" id="step-4">
-                        <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-4">4</span>
-                        <h4 class="text-xs ui-sync text-slate-900" id="title-4">04 — Receive Live Mission Opportunities</h4>
-                        <p class="text-[11px] text-gray-500 font-light">The platform begins matching verified opportunities to verified operators.</p>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
-
     </div>
 
-    <!-- Philosophical Punch & Feedback System -->
-    <section class="max-w-[1450px] mx-auto px-4 md:px-10 mb-12">
+    <!-- Relocated Trust Bar directly beneath the Hero -->
+    <section class="py-8 border-y border-gray-200 bg-white overflow-hidden shadow-sm">
+        <div id="scroller" class="animate-scroll items-center">
+            <div class="flex space-x-20 px-10 items-center whitespace-nowrap">
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">OIL & GAS EXPLORATION LOGISTICS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">TIER-1 BANKING ESCROWS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">MINING CONGLOMERATE CHARTERS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">MULTINATIONAL TELECOM CHIEFS</span>
+            </div>
+            <div class="flex space-x-20 px-10 items-center whitespace-nowrap">
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">OIL & GAS EXPLORATION LOGISTICS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">TIER-1 BANKING ESCROWS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">MINING CONGLOMERATE CHARTERS</span>
+                <span class="font-monument-regular text-xs text-slate-400 tracking-widest">MULTINATIONAL TELECOM CHIEFS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Holistic Persuasion Flow Segment -->
+    <div class="max-w-[1450px] mx-auto px-6 md:px-10 pt-16" id="about-us">
+        <div class="bg-white border border-gray-200 p-8 md:p-12 rounded-3xl space-y-6 shadow-sm">
+            <h3 class="font-bold text-xs ui-sync text-fbblue border-l-4 border-fbblue pl-4">THE ARCHITECTURE OF CERTAINTY</h3>
+            <p class="body-lexend text-lg md:text-xl text-slate-800 leading-relaxed font-light">
+                The Architecture of Certainty exists to ensure mission activation, payment verification, operational readiness, and dispatch preparation occur through structured verification instead of assumptions.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
+                <div class="p-4 bg-slate-50 rounded-xl">
+                    <span class="text-[10px] ui-sync text-fbblue block mb-1">DASHBOARD DECREE</span>
+                    <span class="text-slate-900 font-bold">If our dashboard says go, the money is real.</span>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl">
+                    <span class="text-[10px] ui-sync text-fbblue block mb-1">ACTIVATION DECREE</span>
+                    <span class="text-slate-900 font-bold">If our dashboard says activated, the mission is ready.</span>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl">
+                    <span class="text-[10px] ui-sync text-fbblue block mb-1">CONFIRMATION DECREE</span>
+                    <span class="text-slate-900 font-bold">If our dashboard says confirmed, the certainty already exists.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Problems We Solve Section: Styled with monument regular and blue syncopate -->
+    <div class="max-w-[1450px] mx-auto px-6 md:px-10 py-16" id="coordination-brief">
+        <div class="mb-10">
+            <h3 class="font-monument-regular text-2xl md:text-3xl tracking-tight text-slate-950 mb-2 uppercase">
+                THE CORE PROBLEMS WE SOLVE FOR YOU
+            </h3>
+            <span class="font-syncopate text-xs text-fbblue tracking-widest block uppercase">
+                INTEGRITY STANDARDS • ELIMINATING ASSUMPTIONS
+            </span>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Problem 1 -->
+            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
+                <span class="font-monument-regular uppercase text-fbblue text-[10px] block tracking-widest leading-relaxed">01. STOP BURNING RESOURCES FOR IMAGINARY REVENUE</span>
+                <p class="text-xs text-gray-600 font-light leading-relaxed">
+                    If the dashboard activates a mission, the money is already secured. No guesswork. No gambling. No fuel purchased on faith.
+                </p>
+            </div>
+
+            <!-- Problem 2 -->
+            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
+                <span class="font-monument-regular uppercase text-fbblue text-[10px] block tracking-widest leading-relaxed">02. ONE SOURCE OF TRUTH BEATS TWENTY PHONE CALLS</span>
+                <p class="text-xs text-gray-600 font-light leading-relaxed">
+                    Everyone has information. Nobody has the same information. The platform removes interpretation and replaces it with visibility.
+                </p>
+            </div>
+
+            <!-- Problem 3 -->
+            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
+                <span class="font-monument-regular uppercase text-fbblue text-[10px] block tracking-widest leading-relaxed">03. COMPLIANCE SHOULD ACTUALLY MEAN SOMETHING</span>
+                <p class="text-xs text-gray-600 font-light leading-relaxed">
+                    Maintaining aircraft, crews, certifications, and documentation isn't cheap. Operators who invest in readiness shouldn't compete with operators who merely sound ready.
+                </p>
+            </div>
+
+            <!-- Problem 4 -->
+            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
+                <span class="font-monument-regular uppercase text-fbblue text-[10px] block tracking-widest leading-relaxed">04. REALITY IS MORE NUANCED THAN PASS OR FAIL</span>
+                <p class="text-xs text-gray-600 font-light leading-relaxed">
+                    Sometimes a document is renewing. Sometimes an inspection is pending. Sometimes life happens. The system understands shades of operational readiness without compromising safety.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Main Container -->
+    <div class="tech-grid pb-20 px-4 md:px-10 max-w-[1450px] mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- Left Side: Interactive Portal Status & Quiz Framework -->
+            <div class="lg:col-span-7 space-y-12">
+                
+                <!-- Pre-Access Block (Triggering the Coursera-Style Video Academy) -->
+                <div id="academy-trigger-box" class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl relative space-y-6 shadow-sm">
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-50 p-3 rounded-full text-fbblue">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-950">15D Wings Operator Briefing</h3>
+                            <p class="text-xs text-gray-500 font-lexend">Before we hand you live charter opportunities, we'd like to make sure we're speaking the same language. Not aviation language. Certainty language.</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-gray-600 leading-relaxed font-light">
+                        Inside these short modules you'll learn why:<br>
+                        • Screenshots don't activate missions.<br>
+                        • Excuses don't override telemetry.<br>
+                        • Delays don't automatically become cancellations.<br>
+                        • Compliance isn't binary.<br>
+                        • Backup plans should already exist before they're needed.<br><br>
+                        Five short modules. No consultants. No corporate poetry. Just how the machine thinks.
+                    </p>
+
+                    <div>
+                        <button onclick="revealAcademy()" class="w-full md:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-xs ui-sync rounded-xl shadow-md transition duration-300">
+                            <span>LAUNCH ONBOARDING BRIEFING</span>
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coursera-Style Video & Module System (Revealed by Button Click) -->
+                <div id="academy-portal" class="hidden border border-gray-200 rounded-3xl overflow-hidden bg-white shadow-xl grid grid-cols-1 md:grid-cols-12 animate-fade-in">
+                    
+                    <!-- Left Column: Video Screen Context -->
+                    <div class="md:col-span-7 bg-slate-950 p-6 flex flex-col justify-between min-h-[340px] md:min-h-[480px] relative">
+                        <div class="flex justify-between items-center z-10">
+                            <span class="text-[9px] font-mono tracking-widest text-fbblue bg-fbblue/10 px-2.5 py-1" id="active-module-tag">MODULE 1 / 5</span>
+                            <span class="text-[10px] font-mono text-gray-400" id="video-countdown">00:00</span>
+                        </div>
+
+                        <!-- Mock Dynamic Visual Player -->
+                        <div class="my-6 text-center space-y-4 z-10">
+                            <div class="inline-flex h-14 w-14 bg-fbblue/10 rounded-full items-center justify-center border border-fbblue/20 text-fbblue animate-pulse">
+                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-white text-sm" id="main-player-title">The Plane Doesn't Care About Excuses</h4>
+                            <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed" id="main-player-desc">Things happen. Crew members get delayed. Permits take longer. Vehicles break down. Phones mysteriously stop ringing. The Architecture of Certainty assumes problems will happen. That's why contingency planning begins before activation, not after.</p>
+                        </div>
+
+                        <!-- Progress bar -->
+                        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden z-10 relative">
+                            <div class="bg-fbblue h-full w-0" id="academy-video-progress"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Course Modules (Google Coursera Style) -->
+                    <div class="md:col-span-5 bg-slate-50 border-t md:border-t-0 md:border-l border-gray-100 flex flex-col justify-between">
+                        <div class="p-5 border-b border-gray-200">
+                            <h3 class="font-bold text-xs ui-sync text-slate-800">MODULE SYLLABUS</h3>
+                            <p class="text-[11px] text-gray-400">Every completed module unlocks another layer of the system's decision-making logic.</p>
+                        </div>
+
+                        <!-- Modules List -->
+                        <div class="divide-y divide-gray-100 overflow-y-auto max-h-[300px]">
+                            <!-- Module 1 -->
+                            <button onclick="loadModule(1, 'The Plane Doesn\'t Care About Excuses', 'Things happen. Crew members get delayed. Permits take longer. Vehicles break down. Phones mysteriously stop ringing. The Architecture of Certainty assumes problems will happen. That\'s why contingency planning begins before activation, not after.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 bg-white" id="mod-btn-1">
+                                <span class="text-xs font-mono font-bold text-fbblue" id="mod-status-1">●</span>
+                                <div class="space-y-0.5">
+                                    <h4 class="text-xs font-bold text-slate-900">1. The Plane Doesn't Care About Excuses</h4>
+                                    <p class="text-[10px] text-gray-400">Why we bypass verbal stories.</p>
+                                </div>
+                            </button>
+
+                            <!-- Module 2 -->
+                            <button onclick="loadModule(2, 'Screenshots Have Never Purchased Jet A-1', 'A payment receipt is not a payment. A promise is not a payment. A broker\'s confidence is definitely not a payment. This module explains why the system only listens to verified funds.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-2" disabled>
+                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-2">○</span>
+                                <div class="space-y-0.5">
+                                    <h4 class="text-xs font-bold text-slate-900">2. Screenshots Have Never Purchased Jet A-1</h4>
+                                    <p class="text-[10px] text-gray-400">Verified funds vs payment promises.</p>
+                                </div>
+                            </button>
+
+                            <!-- Module 3 -->
+                            <button onclick="loadModule(3, 'Reliability Leaves Footprints', 'Every operator says they\'re reliable. Every dispatcher says they\'re responsive. Every broker says their client is serious. The ledger ignores claims and tracks behaviour instead.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-3" disabled>
+                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-3">○</span>
+                                <div class="space-y-0.5">
+                                    <h4 class="text-xs font-bold text-slate-900">3. Reliability Leaves Footprints</h4>
+                                    <p class="text-[10px] text-gray-400">The platform tracks pure behavioural metrics.</p>
+                                </div>
+                            </button>
+
+                            <!-- Module 4 -->
+                            <button onclick="loadModule(4, 'Not Every Mission Is Equally Alive', 'A conversation is not a mission. A quote is not a mission. A deposit is not a mission. A mission becomes increasingly real as certainty increases. This module explains how activation tiers work.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-4" disabled>
+                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-4">○</span>
+                                <div class="space-y-0.5">
+                                    <h4 class="text-xs font-bold text-slate-900">4. Not Every Mission Is Equally Alive</h4>
+                                    <p class="text-[10px] text-gray-400">Unpacking our soft, warm, and full tiers.</p>
+                                </div>
+                            </button>
+
+                            <!-- Module 5 -->
+                            <button onclick="loadModule(5, 'Hope Is Not A Backup Plan', 'Most operational disasters start with one sentence: \&quot;We didn\'t think that would happen.\&quot; This module explains why redundancy exists throughout the platform.')" class="w-full text-left p-4 hover:bg-white transition flex items-start space-x-3 opacity-60" id="mod-btn-5" disabled>
+                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-5">○</span>
+                                <div class="space-y-0.5">
+                                    <h4 class="text-xs font-bold text-slate-900">5. Hope Is Not A Backup Plan</h4>
+                                    <p class="text-[10px] text-gray-400">System redundancy layers uncovered.</p>
+                                </div>
+                            </button>
+                        </div>
+
+                        <div class="p-4 bg-slate-100 text-center">
+                            <button id="academy-next-btn" onclick="simulateActiveModule()" class="w-full py-2 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-[10px] ui-sync rounded">
+                                START ACTIVE CLIP
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pre-Access Interactive Quiz Section -->
+                <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-2xl relative space-y-8 shadow-sm" id="quiz-section">
+                    <div class="absolute top-0 right-8 transform -translate-y-1/2 bg-fbblue text-white ui-sync text-[8px] px-3 py-1 rounded-sm shadow-md">
+                        GATEWAY ASSESSMENT
+                    </div>
+
+                    <div class="space-y-2">
+                        <h3 class="font-bold text-lg md:text-xl text-slate-950">The Certainty Verification Check</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed font-light">
+                            No aviation platform can eliminate turbulence. But operational turbulence is optional. The following scenarios are based on real conditions that affect mission activation inside the 15D Wings ecosystem.<br><br><strong>Choose the response most aligned with our Architecture of Certainty.</strong>
+                        </p>
+                    </div>
+
+                    <!-- Questions Container -->
+                    <div class="space-y-6" id="questions-box">
+                        
+                        <!-- Question 1 (Updated based on "Mission Disbursement Response Plan") -->
+                        <div class="space-y-4 quiz-step" id="q1">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 01 of 07</span>
+                                <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Mission Disbursement Duty</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-base">When a real-time flight request is disbursed to your dispatch team via the dashboard, what action is expected to ensure immediate mission compliance?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(1, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
+                                    <span>A) Await direct telephone communication from the flight broker to negotiate crew availability.</span>
+                                    <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
+                                </button>
+                                <button onclick="answerQuestion(1, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
+                                    <span>B) Respond immediately to the request via the dashboard with the availability of the tail and the full quote for the desired route, tail, and associated metrics.</span>
+                                    <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
+                                </button>
+                                <button onclick="answerQuestion(1, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
+                                    <span>C) Log the inquiry locally on your dispatch board and process it at the end of the standard shift cycle.</span>
+                                    <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
+                                </button>
+                                <button onclick="answerQuestion(1, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
+                                    <span>D) Initiate direct coordination over external messaging channels and wait for informal confirmation.</span>
+                                    <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="space-y-4 quiz-step hidden" id="q2">
+                            <div class="flex justify-between items-center">
+                                <span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 02 of 07</span>
+                                <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">CCI Framework</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-base">A charter request requires medical monitoring personnel, specialized routing considerations, and urgent international coordination. Which CCI classification is most appropriate?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(2, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) CCI-0</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(2, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) CCI-1</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(2, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) CCI-2</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(2, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) CCI-3</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="space-y-4 quiz-step hidden" id="q3">
+                            <div class="flex justify-between items-center"><span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 03 of 07</span><span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Activation Tiers</span></div>
+                            <h4 class="font-semibold text-slate-900 text-base">A mission has entered Warm Activation. Crew members have been alerted. Aircraft positioning has been noted. Permit preparation has begun. What activation tier currently applies?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(3, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Tier 1 — Soft Hold</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(3, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Tier 2 — Warm Activation</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(3, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Tier 3 — Full Activation</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(3, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Cooperative Re-Routing</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="space-y-4 quiz-step hidden" id="q4">
+                            <div class="flex justify-between items-center"><span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 04 of 07</span><span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Pivot Triggers</span></div>
+                            <h4 class="font-semibold text-slate-900 text-base">A Pilot-in-Command fails to respond to platform operations requests within the required communication gate. What does the system assume?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(4, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) The pilot is probably busy.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(4, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) The operator should be called repeatedly until someone answers.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(4, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) A certainty gap exists and Pivot Protocol evaluation may begin.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(4, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Nothing happens.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="space-y-4 quiz-step hidden" id="q5">
+                            <div class="flex justify-between items-center"><span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 05 of 07</span><span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Five-Pillar Integrity Standard</span></div>
+                            <h4 class="font-semibold text-slate-900 text-base">Four of the Five Integrity Pillars are complete. Permits verified. Aircraft verified. Crew verified. Fuel verified. Capital Security remains incomplete. Can the mission be released?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(5, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Yes.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(5, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Only if the client is a repeat customer.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(5, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Only with written broker indemnity.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(5, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) No.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Question 6 -->
+                        <div class="space-y-4 quiz-step hidden" id="q6">
+                            <div class="flex justify-between items-center"><span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 06 of 07</span><span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Milestone Gates</span></div>
+                            <h4 class="font-semibold text-slate-900 text-base">An operator uploads permit documents, fuel evidence and crew declarations before the applicable milestone gates close. What operational outcome is most likely?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(6, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Reduced certainty.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(6, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Increased readiness scoring and uninterrupted mission progression.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(6, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Automatic reclassification to CCI-X.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(6, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Standby asset activation.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Question 7 -->
+                        <div class="space-y-4 quiz-step hidden" id="q7">
+                            <div class="flex justify-between items-center"><span class="font-mono text-xs text-fbblue uppercase tracking-wider">Question 07 of 07</span><span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Anti-Renegotiation Protection</span></div>
+                            <h4 class="font-semibold text-slate-900 text-base">A mission reaches Tier 3 Full Activation. The operator then attempts to introduce additional pricing conditions and new surcharges. How does the platform respond?</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <button onclick="answerQuestion(7, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Renegotiation begins immediately.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
+                                <button onclick="answerQuestion(7, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Client approval is requested.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
+                                <button onclick="answerQuestion(7, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Mission protection protocols activate and systemic review begins.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
+                                <button onclick="answerQuestion(7, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) The surcharge is automatically accepted.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
+                            </div>
+                        </div>
+
+                        <!-- Pass State Message / Redirect Button -->
+                        <div class="space-y-6 text-center py-6 hidden" id="quiz-success">
+                            <div class="inline-flex h-16 w-16 bg-emerald-100 border border-emerald-500/30 text-emerald-600 rounded-full items-center justify-center shadow-md">
+                                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </div>
+                            <div class="space-y-2 max-w-md mx-auto">
+                                <h4 id="pass-verdict-title" class="font-extrabold text-slate-950 text-lg">OPERATIONAL ALIGNMENT CLEAR</h4>
+                                <p class="text-xs text-gray-500" id="pass-verdict-desc">
+                                    Perfect score. The command engine has automatically generated your candidate code: <br><strong>[CCI-ACTIVE-2026]</strong>. Your system dashboard credentials are now unlocked.
+                                </p>
+                            </div>
+                            
+                            <div class="pt-4 max-w-sm mx-auto">
+                                <a href="https://portal.15dwings.com.ng/operator/dashboard" class="w-full block text-center py-4 bg-fbblue hover:bg-fbblue/90 text-white ui-sync text-[10px] rounded-xl font-bold tracking-[0.2em] shadow-lg shadow-fbblue/20 transition duration-300">
+                                    ENTER OPERATOR DASHBOARD →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Fail State Message -->
+                        <div class="space-y-4 text-center py-6 hidden" id="quiz-error">
+                            <div class="inline-flex h-16 w-16 bg-red-100 border border-red-500/30 text-red-600 rounded-full items-center justify-center">
+                                <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                                </svg>
+                            </div>
+                            <p class="text-xs text-red-600 font-mono">ALIGNMENT DRIFT DETECTED. RETRY CHECKLIST TO CORRECT VALUES.</p>
+                            <button onclick="resetQuiz()" class="text-xs ui-sync text-fbblue underline hover:text-slate-900">RETRY CHECKLIST SYSTEM</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Side: Interactive Status Map -->
+            <div class="lg:col-span-5 space-y-8">
+                <!-- Interactive Status Journey Map -->
+                <div class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl space-y-6 shadow-sm sticky top-28">
+                    <p class="ui-sync text-[10px] text-gray-400 tracking-wider">YOUR PATH TO ACTIVATION</p>
+                    
+                    <div class="space-y-8 relative pl-6 border-l border-gray-200" id="status-map">
+                        
+                        <!-- Journey Step 1 -->
+                        <div class="relative transition duration-300 opacity-100" id="step-1">
+                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-fbblue flex items-center justify-center text-[8px] font-bold text-white ring-4 ring-white">1</span>
+                            <h4 class="text-sm ui-sync text-slate-900 mb-1">01 — Learn How The System Thinks</h4>
+                            <p class="text-xs text-gray-500 font-light">Understand the operational doctrines behind mission allocation.</p>
+                        </div>
+
+                        <!-- Journey Step 2 -->
+                        <div class="relative transition duration-300 opacity-40" id="step-2">
+                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-2">2</span>
+                            <h4 class="text-sm ui-sync text-slate-900 mb-1" id="title-2">02 — Demonstrate Alignment</h4>
+                            <p class="text-xs text-gray-500 font-light">Confirm that your team understands certainty-based operations.</p>
+                        </div>
+
+                        <!-- Journey Step 3 -->
+                        <div class="relative transition duration-300 opacity-40" id="step-3">
+                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-3">3</span>
+                            <h4 class="text-sm ui-sync text-slate-900 mb-1" id="title-3">03 — Verify Your Operational Readiness</h4>
+                            <p class="text-xs text-gray-500 font-light">Upload certifications, fleet data and required documentation.</p>
+                        </div>
+
+                        <!-- Journey Step 4 -->
+                        <div class="relative transition duration-300 opacity-40" id="step-4">
+                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-4">4</span>
+                            <h4 class="text-sm ui-sync text-slate-900 mb-1" id="title-4">04 — Receive Live Mission Opportunities</h4>
+                            <p class="text-xs text-gray-500 font-light">The platform begins matching verified opportunities to verified operators.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- NEW SECTION: The Four Major Doctrines (Expanded Concepts) -->
+    <section class="max-w-[1450px] mx-auto px-4 md:px-10 mb-20 pt-12 border-t border-gray-200" id="doctrines">
+        <div class="max-w-3xl mb-12">
+            <span class="text-xs ui-sync text-fbblue bg-fbblue/5 border border-fbblue/10 px-3 py-1 inline-block mb-4">PHILOSOPHICAL EXPANSION</span>
+            <h2 class="header-lexend text-3xl md:text-4xl text-slate-900 mb-4 font-extrabold">The Four Pillars of the Architecture</h2>
+            <p class="body-lexend text-lg text-gray-600">
+                Right now the portal strongly communicates Escrow Certainty, Activation Tiers, Pivot Logic, CCI, Five-Pillar Integrity, Compliance, and Anti-Renegotiation. But the platform is actually much bigger philosophically than that. These are the four doctrines that govern everything we do.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Doctrine 1 -->
+            <div class="premium-card p-8 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <h4 class="text-[10px] ui-sync text-fbblue tracking-widest font-bold">HOLE #1: THE COST OF UNCERTAINTY</h4>
+                <h3 class="font-extrabold text-2xl text-slate-950 header-lexend">Why Certainty Matters</h3>
+                <div class="text-sm text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
+                    <p>Every operator has paid the uncertainty tax. The uncertainty tax looks different every week:</p>
+                    <ul class="list-none space-y-2 pl-2 border-l-2 border-fbblue/30 text-gray-500">
+                        <li>• A crew is mobilized for a client that never pays.</li>
+                        <li>• Fuel arrangements are initiated for a mission that disappears.</li>
+                        <li>• Permits are processed for passengers who change their minds.</li>
+                        <li>• Dispatch teams spend hours chasing information that should already exist.</li>
+                        <li>• Aircraft sit idle while everyone waits for somebody else's confirmation.</li>
+                    </ul>
+                    <p>Individually these problems feel small. Collectively they cost operators millions of naira, thousands of staff hours and countless unnecessary headaches.</p>
+                    <p class="font-medium text-slate-800">The Architecture of Certainty exists to reduce the uncertainty tax.</p>
+                </div>
+            </div>
+
+            <!-- Doctrine 2 -->
+            <div class="premium-card p-8 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <h4 class="text-[10px] ui-sync text-fbblue tracking-widest font-bold">HOLE #2: WRITTEN RECORDS OVER MEMORY</h4>
+                <h3 class="font-extrabold text-2xl text-slate-950 header-lexend">Memory Is Not An Audit Trail</h3>
+                <div class="text-sm text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
+                    <p>Everybody remembers conversations differently.<br>
+                    Everybody remembers promises differently.<br>
+                    Everybody remembers timelines differently.</p>
+                    <p class="font-medium text-slate-800">
+                        Aircraft don't care what someone remembers.<br>
+                        Regulators don't care what someone remembers.<br>
+                        Lawyers definitely don't care what someone remembers.
+                    </p>
+                    <p>That is why operational declarations inside the ecosystem are written, timestamped and traceable. The platform protects certainty by protecting history.</p>
+                </div>
+            </div>
+
+            <!-- Doctrine 3 -->
+            <div class="premium-card p-8 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <h4 class="text-[10px] ui-sync text-fbblue tracking-widest font-bold">HOLE #3: COOPERATIVE RE-ROUTING</h4>
+                <h3 class="font-extrabold text-2xl text-slate-950 header-lexend">Losing A Mission Is Better Than Losing A Reputation</h3>
+                <div class="text-sm text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
+                    <p>Sometimes a flight should move to another operator. Not because someone failed. Because certainty changed.</p>
+                    <p>When milestones remain unverified and time buffers begin closing, the platform protects the client journey through cooperative re-routing. This allows the mission to continue while preserving long-term ecosystem trust.</p>
+                    <p class="font-medium text-slate-800">The objective isn't to find fault. The objective is to protect the schedule. That is pure doctrine.</p>
+                </div>
+            </div>
+
+            <!-- Doctrine 4 -->
+            <div class="premium-card p-8 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+                <h4 class="text-[10px] ui-sync text-fbblue tracking-widest font-bold">HOLE #4: THE OPERATOR IS NOT COMPETING AGAINST OTHER OPERATORS</h4>
+                <h3 class="font-extrabold text-2xl text-slate-950 header-lexend">The System Doesn't Reward Popularity</h3>
+                <div class="text-sm text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
+                    <p>Your current portal subtly feels like: <em>"We rank operators."</em><br>
+                    But our doctrine is actually: <strong>"We rank certainty."</strong></p>
+                    <p>The platform does not allocate opportunities based on:</p>
+                    <ul class="list-none space-y-1 pl-2 border-l-2 border-fbblue/30 text-gray-500 mb-2">
+                        <li>• Friendships or Familiarity</li>
+                        <li>• Influence or Pressure</li>
+                        <li>• Loudness or Negotiation tactics</li>
+                    </ul>
+                    <p>The platform allocates opportunities based on demonstrated readiness and verified certainty.</p>
+                    <p class="font-medium text-slate-800">In simple terms: The most prepared operator usually wins.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Legal Compliance Segment -->
+    <section class="max-w-[1450px] mx-auto px-4 md:px-10 mb-12" id="compliance">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             <!-- Why We Built This Card -->
             <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm">
                 <h3 class="font-bold text-lg text-slate-950 ui-sync text-xs text-fbblue border-l-2 border-fbblue pl-3">Why We Built This</h3>
-                <p class="text-xs text-gray-600 leading-relaxed font-light">
+                <p class="text-sm text-gray-600 leading-relaxed font-light font-lexend">
                     Because aviation already contains enough uncertainty.<br><br>
-                    Weather is uncertain.<br>
-                    Traffic is uncertain.<br>
-                    Mechanical failures are uncertain.<br>
-                    Human beings are uncertain.<br><br>
+                    Weather is uncertain. Traffic is uncertain. Mechanical failures are uncertain. Human beings are uncertain.<br><br>
                     Payment verification should not be uncertain. Operator readiness should not be uncertain. Mission activation should not be uncertain.<br><br>
                     The Architecture of Certainty exists to reduce avoidable uncertainty so operators can focus on flying.
                 </p>
@@ -629,35 +712,17 @@
             <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm flex flex-col justify-between">
                 <div class="space-y-4">
                     <h3 class="font-bold text-lg text-slate-950 ui-sync text-xs text-fbblue border-l-2 border-fbblue pl-3">Help Us Improve The System</h3>
-                    <p class="text-xs text-gray-600 leading-relaxed font-light">
+                    <p class="text-sm text-gray-600 leading-relaxed font-light font-lexend">
                         The people who use the platform every day usually spot problems before the architects do. If something feels unclear, unrealistic or unnecessarily complicated, tell us. We're listening.
                     </p>
                 </div>
                 <div class="pt-6">
-                    <a href="mailto:concierge@15dwings.com.ng?subject=System%20Improvement%20Feedback" class="inline-flex items-center text-xs font-bold text-fbblue hover:underline uppercase tracking-wider">
+                    <a href="mailto:concierge@15dwings.com.ng?subject=System%20Improvement%20Feedback" class="inline-flex items-center text-xs font-bold text-fbblue hover:underline uppercase tracking-wider font-lexend">
                         Submit Direct Feedback →
                     </a>
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <!-- Substantial Trusted By Industries Scroller -->
-    <section class="py-16 border-y border-gray-200 bg-white overflow-hidden">
-        <div id="scroller" class="animate-scroll items-center">
-            <div class="flex space-x-20 px-10 items-center">
-                <span class="title-monument text-xs text-slate-300 tracking-widest">OIL & GAS EXPLORATION LOGISTICS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">TIER-1 BANKING ESCROWS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">MINING CONGLOMERATE CHARTERS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">MULTINATIONAL TELECOM CHIEFS</span>
-            </div>
-            <div class="flex space-x-20 px-10 items-center">
-                <span class="title-monument text-xs text-slate-300 tracking-widest">OIL & GAS EXPLORATION LOGISTICS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">TIER-1 BANKING ESCROWS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">MINING CONGLOMERATE CHARTERS</span>
-                <span class="title-monument text-xs text-slate-300 tracking-widest">MULTINATIONAL TELECOM CHIEFS</span>
-            </div>
         </div>
     </section>
 
