@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,23 +26,22 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 
+                    colors: {
                         fbblue: '#1877F2', 
-                        nearblack: '#030507', 
-                        luxurygray: '#F9FAFB',
-                        slateborder: '#E2E8F0',
-                        gold: '#C5A059'
+                        airwhite: '#FFFFFF',
+                        slateice: '#F8FAFC',
+                        techgray: '#64748B',
+                        opsdark: '#0F172A'
                     },
                     fontFamily: { 
-                        sync: ['Syncopate', 'sans-serif'], 
-                        lexend: ['Lexend', 'sans-serif']
+                        monument: ['"Monument Extended"', 'Impact', 'sans-serif'], 
+                        lexend: ['Lexend', 'sans-serif'],
+                        syncopate: ['Syncopate', 'sans-serif']
                     }
                 }
             }
@@ -49,1127 +49,568 @@
     </script>
 
     <style>
-        body, html { margin: 0; padding: 0; background: #F9FAFB; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; overflow-x: hidden; }
-        
-        /* TECHNICAL BACKGROUND PATTERN */
-        .tech-grid {
-            background-image: linear-gradient(rgba(24, 119, 242, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(24, 119, 242, 0.02) 1px, transparent 1px);
-            background-size: 30px 30px;
-        }
+        @import url('https://fonts.cdnfonts.com/css/monument-extended');
 
-        .radar-line {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(24, 119, 242, 0.12);
-            box-shadow: 0 0 15px rgba(24, 119, 242, 0.15);
-            z-index: 1000;
-            pointer-events: none;
-            animation: radar-sweep 10s linear infinite;
-        }
-
-        @keyframes radar-sweep {
-            0% { top: -5%; }
-            100% { top: 105%; }
-        }
-
-        /* TYPOGRAPHY RULES */
-        .font-syncopate-light {
-            font-family: 'Syncopate', sans-serif !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.18em;
-            font-weight: 400 !important;
-        }
-
-        .font-syncopate-bold {
-            font-family: 'Syncopate', sans-serif !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.14em;
-            font-weight: 700 !important;
-        }
-
-        .header-lexend {
+        body {
+            background-color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
             font-family: 'Lexend', sans-serif;
-            font-weight: 900;
-            line-height: 1.2;
-            color: #030507;
-            letter-spacing: -0.02em;
+            color: #0F172A;
         }
 
-        .body-lexend { 
-            font-family: 'Lexend', sans-serif; 
-            color: #4B5563; 
-            font-weight: 300; 
-            line-height: 1.75; 
+        /* Tech Blueprint Grid System */
+        .tech-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(24, 119, 242, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(24, 119, 242, 0.03) 1px, transparent 1px);
         }
 
-        .animate-scroll { display: flex; width: max-content; }
-        
-        .premium-card {
-            background: #FFFFFF;
-            border: 1px solid #E2E8F0;
+        /* Sovereign Button Motion */
+        .sovereign-btn {
+            background: #1877F2;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .premium-card:hover {
-            border-color: #1877F2;
-            box-shadow: 0 15px 30px rgba(24, 119, 242, 0.05);
+        
+        .sovereign-btn:hover {
+            transform: translateY(-2px);
+            background: #115EC3;
+            box-shadow: 0 12px 30px rgba(24, 119, 242, 0.25);
         }
 
-        /* Custom scrollbars */
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Premium Card Hover Interactions */
+        .premium-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(24, 119, 242, 0.08);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        ::-webkit-scrollbar-track {
-            background: #F1F5F9;
+
+        .premium-card:hover {
+            border-color: rgba(24, 119, 242, 0.3);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
+            transform: translateY(-4px);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #1877F2;
-            border-radius: 3px;
+
+        .font-monument-header {
+            font-family: 'Monument Extended', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
     </style>
 </head>
-<body class="bg-luxurygray text-nearblack body-lexend text-sm md:text-base selection:bg-fbblue/10 selection:text-fbblue">
+<body class="selection:bg-fbblue/10 selection:text-fbblue">
 
-    <div class="radar-line"></div>
+    <!-- Interactive Grid Backdrop -->
+    <div class="fixed inset-0 tech-grid pointer-events-none z-0"></div>
 
-    <!-- 1. NAVIGATION -->
-    <nav class="fixed top-0 w-full z-[100] py-4 px-6 md:px-10 flex justify-between items-center bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div class="flex items-center space-x-3">
-            <img src="https://uploads.onecompiler.io/43z22g7dk/44b5wdtpn/1000301979.png" class="h-5 md:h-6" alt="15D Wings">
-            <span class="text-gray-300 hidden md:inline">|</span>
-            <span class="font-syncopate-light text-[8px] text-gray-400 hidden md:inline">OPERATOR GATEWAY</span>
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-slate-100">
+        <div class="py-4 px-6 md:px-12 flex justify-between items-center max-w-screen-2xl mx-auto">
+            <div class="flex flex-col">
+                <span class="font-monument-header text-[12px] md:text-[14px] tracking-wide text-opsdark">15D WINGS</span>
+                <span class="text-[7.5px] font-syncopate font-extrabold tracking-[0.25em] text-fbblue uppercase leading-none mt-1">ARCHITECTS OF CERTAINTY</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#faq" class="font-syncopate text-[9px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase transition-colors">FAQs</a>
+                <a href="https://15dwings.com.ng/about%20us" class="font-syncopate text-[9px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase transition-colors">About Us</a>
+                <a href="https://15dwings.com.ng/tos" class="font-syncopate text-[9px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase transition-colors">Terms</a>
+                <a href="https://15dwings.com.ng/legal" class="font-syncopate text-[9px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase transition-colors">Legal</a>
+                
+                <button 
+                    onclick="openHandshakeModal()" 
+                    class="font-syncopate text-[10px] font-bold bg-fbblue hover:bg-opsdark text-white transition-all px-5 py-2.5 rounded uppercase tracking-wider shadow-md hover:shadow-lg"
+                >
+                    Experience Certainty
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-opsdark focus:outline-none p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
 
-        <!-- Desktop Navigation Routes -->
-        <div class="hidden lg:flex items-center space-x-8 text-[11px] font-semibold tracking-wider text-slate-600 font-lexend">
-            <a href="https://15dwings.com.ng/about%20us" class="hover:text-fbblue transition">ABOUT US</a>
-            <a href="#architecture-of-certainty" class="hover:text-fbblue transition">THE DECREES</a>
-            <a href="#briefing-academy" class="hover:text-fbblue transition">COORDINATION BRIEF</a>
-            <a href="#standards" class="hover:text-fbblue transition">STANDARDS</a>
-            <a href="#doctrines" class="hover:text-fbblue transition">DOCTRINES</a>
-            <a href="#faqs" class="hover:text-fbblue transition">LEGAL & FAQS</a>
-            <a href="#alignment-quiz" class="hover:text-fbblue transition text-fbblue font-bold">ASSESSMENT</a>
-        </div>
-        
-        <div class="flex items-center space-x-4">
-            <a href="https://portal.15dwings.com.ng" class="font-syncopate-bold text-[8px] border border-gray-200 hover:border-fbblue hover:text-fbblue transition px-4 py-2.5 bg-white">
-                ALREADY ENROLLED
-            </a>
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden bg-white border-t border-slate-100 lg:hidden shadow-xl absolute w-full z-50">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#faq" class="font-syncopate text-[10px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase">FAQs</a>
+                <a href="https://15dwings.com.ng/about%20us" class="font-syncopate text-[10px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase">About Us</a>
+                <a href="https://15dwings.com.ng/tos" class="font-syncopate text-[10px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase">Terms of Service</a>
+                <a href="https://15dwings.com.ng/legal" class="font-syncopate text-[10px] text-techgray hover:text-fbblue font-bold tracking-widest uppercase">Legal</a>
+                <button 
+                    onclick="openHandshakeModal()" 
+                    class="w-full text-center font-syncopate text-[10px] font-bold bg-fbblue text-white py-3 rounded uppercase tracking-wider"
+                >
+                    Experience Certainty
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- 2. HERO SECTION WITH CINEMATIC BACKGROUND VIDEO -->
-    <div class="relative w-full overflow-hidden bg-slate-950 mt-16 md:mt-20">
-        <!-- Background loop video -->
-        <video class="absolute top-0 left-0 w-full h-full object-cover opacity-65 mix-blend-screen" autoplay loop muted playsinline poster="https://placehold.co/1920x1080/030507/ffffff?text=15D+Wings+Cinema">
-            <source src="https://res.cloudinary.com/dfbweqelf/video/upload/v1776287672/Luxury_Aviation_Brand_Film_Generation_paq1u2.mp4" type="video/mp4">
-        </video>
-        <!-- Gradients -->
-        <div class="absolute inset-0 bg-gradient-to-t from-nearblack via-nearblack/50 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-nearblack via-transparent to-nearblack/45"></div>
+    <!-- Top-Level Hero Banner -->
+    <section class="relative pt-24 md:pt-32 pb-12 px-6 md:px-12 flex flex-col items-center z-10 max-w-7xl mx-auto text-center">
+        <!-- Structural Vector Glow Elements -->
+        <div class="absolute top-10 right-10 w-[400px] h-[400px] bg-fbblue/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <!-- Metaphor Image: Blindfolded Captain Right Under Header -->
+        <div class="w-full max-w-5xl aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)] border border-slate-100 bg-slateice mb-12 relative group">
+            <img 
+                src="https://uploads.onecompiler.io/43z22g7dk/1783202901471/1000601829.png" 
+                alt="Blindfolded Captain flying on promises" 
+                class="w-full h-full object-cover object-[center_30%] transform scale-[1.01] transition-all duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+            <div class="absolute bottom-6 left-6 text-left">
+                <span class="text-[9px] font-syncopate font-bold tracking-widest text-white bg-fbblue/90 backdrop-blur-md px-3 py-1.5 rounded uppercase">
+                DONT FLY UNCERTAIN 
+                </span>
+            </div>
+        </div>
         
-        <!-- Hero Content -->
-        <div class="relative z-10 max-w-[1450px] mx-auto px-6 md:px-12 py-24 md:py-36 flex flex-col justify-end min-h-[600px] md:min-h-[720px]">
-            <span class="text-xs font-syncopate-bold text-fbblue bg-fbblue/20 backdrop-blur-md border border-fbblue/30 px-3 py-1.5 rounded-sm inline-block w-fit mb-6">SYSTEM DECREE</span>
+        <!-- Elevated Strategic Copy -->
+        <div class="max-w-4xl space-y-6 z-10">
+            <span class="text-[9.5px] font-syncopate font-extrabold tracking-[0.3em] text-fbblue uppercase block">
+                SYSTEM MANIFESTO
+            </span>
             
-            <h1 class="header-lexend text-3xl md:text-5xl lg:text-6xl text-white max-w-5xl mb-6">
-                Answering 20 different brokers for the exact same flight 6 million times is not a business model.
+            <h1 class="font-monument-header text-2xl md:text-4xl lg:text-5xl text-opsdark leading-[1.1] max-w-3xl mx-auto">
+                Jet A-1 does not run on <br><span class="text-fbblue">WhatsApp Promises.</span>
             </h1>
             
-            <h2 class="font-lexend text-xl md:text-2xl text-slate-300 max-w-4xl mb-8 font-light leading-snug">
-                Your dispatch team was hired to fly aircraft, not chase screenshots.
-            </h2>
+            <p class="text-base md:text-xl text-techgray font-medium max-w-2xl mx-auto leading-relaxed font-lexend">
+                We don’t treat symptoms. Escrow is just a bandage; the true disease in private aviation is <span class="text-opsdark font-semibold underline decoration-fbblue decoration-2">Uncertainty</span>.
+            </p>
+
+            <div class="text-sm md:text-base text-techgray font-light max-w-3xl mx-auto leading-relaxed border-t border-slate-100 pt-6 space-y-4 text-left md:text-center font-lexend">
+                <p>
+                    Every operator knows the gut-wrenching friction of the charter business. A broker swears the client has initiated a bank transfer. Your operations team starts filing flight plans, the pilots start ticking away their legal duty windows, and the ground handler waits. 
+                </p>
+                <p class="text-opsdark font-normal">
+                    Then the morning sun rises, bank networks clog, and you are expected to roll down the runway on nothing but a pixelated screenshot and verbal handshakes. 
+                </p>
+                <p>
+                    At <strong class="text-opsdark font-semibold">15D Wings</strong>, we are the <span class="text-fbblue font-bold">Architects of Certainty</span>. We engineer the sovereign infrastructure that sits between raw demand and your cockpit door. If the telemetry of capital, crew, and craft doesn't align to show absolute, irreversible clearance—your turbine doesn't spin. No political games, no late-night phone pleas. Just deterministic execution.
+                </p>
+            </div>
+
+            <div class="pt-8">
+                <button 
+                    onclick="openHandshakeModal()" 
+                    class="sovereign-btn font-syncopate text-[11px] font-bold uppercase text-white px-10 py-5 rounded-lg tracking-widest inline-flex items-center gap-3 shadow-lg hover:shadow-2xl"
+                >
+                    <span>Experience Certainty</span>
+                    <span class="text-white/80 text-lg leading-none font-lexend">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operational Certainty Marquee -->
+    <div class="bg-slateice border-y border-slate-100 py-6 overflow-hidden mt-8">
+        <div class="flex space-x-12 whitespace-nowrap justify-center text-[9px] tracking-[0.25em] text-techgray font-syncopate font-bold uppercase">
+            <span>• ARCHITECTING SYSTEMIC TRACEABILITY •</span>
+            <span>• DETERMINISTIC CHARTER TELEMETRY •</span>
+            <span class="hidden md:inline">• ZERO FLIGHT-PLAN RISK •</span>
+            <span>• GUARANTEED BLOCK-HOUR PROTECTION •</span>
+        </div>
+    </div>
+
+    <!-- The Anatomy of Certainty -->
+    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto z-10 relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl text-slate-300 font-light text-sm md:text-base leading-relaxed">
-                <div class="space-y-4 font-lexend">
-                    <p>Every operator knows the story. A "confirmed client" appears. The broker sounds confident. The crew is alerted. The permits start moving. Fuel planning begins. Everybody starts preparing. Then the money disappears into another dimension.</p>
-                    <p class="text-white border-l-2 border-fbblue pl-4 py-1 italic font-semibold">
-                        And suddenly everyone is having the same conversation: "Let's just give them a little more time."
+            <!-- Left Column: Visual Contrast Cabin Crew -->
+            <div class="lg:col-span-5">
+                <div class="relative w-full max-w-md lg:max-w-full aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12)] border border-slate-100 bg-slateice group">
+                    <img 
+                        src="https://uploads.onecompiler.io/43z22g7dk/1783202875845/1000601834.png" 
+                        alt="Blindfolded Cabin Crew member smiling with receipt band" 
+                        class="w-full h-full object-cover object-center transform scale-[1.01] transition-all duration-700 group-hover:scale-105"
+                    />
+                    <div class="absolute inset-0 border border-black/5 rounded-2xl pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Right Column: The 3 Pillars of Certainty -->
+            <div class="lg:col-span-7 space-y-10">
+                <div class="space-y-4">
+                    <span class="font-syncopate text-[10px] font-bold tracking-widest text-fbblue block uppercase">THE TRUTH SYSTEM</span>
+                    <h2 class="font-monument-header text-xl md:text-3xl text-opsdark leading-relaxed">Curing the Disease of Chaos</h2>
+                    <p class="text-techgray text-sm font-light leading-relaxed font-lexend">
+                        We don't sell software. We design operational gravity. Here is how we build absolute predictability into your fleet's schedule:
                     </p>
                 </div>
-                <div class="space-y-4 font-lexend">
-                    <p>Unfortunately, Jet A-1 does not run on optimism. Permit authorities do not process confidence. Crew duty windows do not extend themselves. Aircraft do not reposition because someone sounded convincing on WhatsApp.</p>
-                    <p>15D Wings was built to solve a simple problem: <strong class="text-white">No operator should mobilize resources based on promises.</strong> The Architecture of Certainty exists to ensure mission activation, payment verification, operational readiness, and dispatch preparation occur through structured verification instead of assumptions.</p>
+
+                <div class="grid grid-cols-1 gap-6">
+                    <!-- Pillar 1 -->
+                    <div class="premium-card p-6 rounded-xl flex gap-6 items-start">
+                        <div class="w-12 h-12 shrink-0 rounded-lg bg-fbblue/10 flex items-center justify-center text-fbblue border border-fbblue/20">
+                            <span class="text-xl">💳</span>
+                        </div>
+                        <div>
+                            <h3 class="font-monument-header text-[12px] text-opsdark leading-normal mb-2">Unconditional Capital Settlement</h3>
+                            <p class="text-techgray text-[13px] leading-relaxed font-light font-lexend">
+                                Escrow is merely our gatekeeper. Before your crew is mobilized, flight capital is verified and held. No receipt checks, no bank-to-bank apologies, no delays. When you say clear, the settlement is mathematically locked.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="premium-card p-6 rounded-xl flex gap-6 items-start">
+                        <div class="w-12 h-12 shrink-0 rounded-lg bg-fbblue/10 flex items-center justify-center text-fbblue border border-fbblue/20">
+                            <span class="text-xl">⏱️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-monument-header text-[12px] text-opsdark leading-normal mb-2">Duty-Loop Protection</h3>
+                            <p class="text-techgray text-[13px] leading-relaxed font-light font-lexend">
+                                Your pilots’ flight and duty limitation times are sacred. We protect them from being burned waiting on administrative delays. If a dispatch window expires because of client lag, the protocol resets automatically.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="premium-card p-6 rounded-xl flex gap-6 items-start">
+                        <div class="w-12 h-12 shrink-0 rounded-lg bg-fbblue/10 flex items-center justify-center text-fbblue border border-fbblue/20">
+                            <span class="text-xl">🎯</span>
+                        </div>
+                        <div>
+                            <h3 class="font-monument-header text-[12px] text-opsdark leading-normal mb-2">Unified Integrity Layer</h3>
+                            <p class="text-techgray text-[13px] leading-relaxed font-light font-lexend">
+                                Broker multi-bidding causes phantom demand that clogs up operational lines. 15D Wings bypasses the noise, aligning physical aircraft with genuine, capital-cleared passenger flight hours.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Global Goodwill & Positioning Validation -->
+    <section class="py-24 bg-opsdark text-white relative z-10 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fbblue/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+            <div class="text-center space-y-4 max-w-3xl mx-auto">
+                <span class="font-syncopate text-[10px] font-bold tracking-widest text-fbblue block uppercase">GLOBAL GOODWILL RADAR</span>
+                <h2 class="font-monument-header text-xl md:text-3xl leading-relaxed">Endorsed by the Industry</h2>
+                <p class="text-slate-300 text-sm font-light leading-relaxed font-lexend">
+                    Why the global aviation architecture, operational specialists, and industry minds are validating the doctrine of absolute operational certainty:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Highlighted Positioning Quote -->
+                <div class="bg-white/5 border-2 border-fbblue/30 p-8 rounded-xl backdrop-blur-sm hover:border-fbblue transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-fbblue mb-4">★★★★★</div>
+                        <p class="text-slate-200 text-sm font-light italic mb-6 leading-relaxed font-lexend">
+                            "A masterclass in market positioning. Addressing 'Certainty' instead of just throwing another tech tool at the payment problem is brilliant. By targeting the operational anxiety of airline operators, 15D Wings has designed a flawless, trust-based framework."
+                        </p>
+                    </div>
+                    <div class="font-syncopate text-[10px] uppercase tracking-widest font-bold text-fbblue">
+                        — Global Aviation UX & Strategy Executive
+                    </div>
+                </div>
+
+                <!-- Goodwill Card 2 -->
+                <div class="bg-white/5 border border-white/10 p-8 rounded-xl backdrop-blur-sm hover:border-fbblue/50 transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-fbblue mb-4">★★★★★</div>
+                        <p class="text-slate-200 text-sm font-light italic mb-6 leading-relaxed font-lexend">
+                            "Most platforms focus only on client convenience, leaving the operators to shoulder the capital risk. Flipping the model to secure the carrier first is the only logical step forward."
+                        </p>
+                    </div>
+                    <div class="font-syncopate text-[10px] uppercase tracking-widest font-bold text-slate-400">
+                        — Private Fleet Dispatch Lead, Middle East
+                    </div>
+                </div>
+
+                <!-- Goodwill Card 3 -->
+                <div class="bg-white/5 border border-white/10 p-8 rounded-xl backdrop-blur-sm hover:border-fbblue/50 transition-colors flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-fbblue mb-4">★★★★★</div>
+                        <p class="text-slate-200 text-sm font-light italic mb-6 leading-relaxed font-lexend">
+                            "No pilot wants to start pre-flight inspections without knowing if the payment has actually landed. Bringing absolute certainty to the dispatch process makes flying safer and operators far more profitable."
+                        </p>
+                    </div>
+                    <div class="font-syncopate text-[10px] uppercase tracking-widest font-bold text-slate-400">
+                        — Aviation Management Director, South Africa
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="py-24 px-6 md:px-12 max-w-4xl mx-auto z-10 relative">
+        <div class="space-y-8">
+            <div class="text-center space-y-3">
+                <span class="font-syncopate text-[10px] font-bold tracking-widest text-fbblue block uppercase">FREQUENT FLIGHT DEBATES</span>
+                <h2 class="font-monument-header text-xl md:text-2xl text-opsdark">The Certainty FAQ</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="border border-slate-100 rounded-xl bg-white p-6 space-y-2">
+                    <h4 class="font-lexend font-bold text-sm text-opsdark">Are you guys just another escrow app?</h4>
+                    <p class="text-xs text-techgray leading-relaxed font-light font-lexend">
+                        No. Escrow is simply our security clearance mechanism. We are architects of entire operational certainty. We synchronize aircraft availability, pilot duty times, and clearing vectors so that every single aspect of your mission is secured from takeoff to wheels down.
+                    </p>
+                </div>
+
+                <div class="border border-slate-100 rounded-xl bg-white p-6 space-y-2">
+                    <h4 class="font-lexend font-bold text-sm text-opsdark">How does this solve late-night payment stress?</h4>
+                    <p class="text-xs text-techgray leading-relaxed font-light font-lexend">
+                        Simple: If the money isn't safely positioned in the escrow architecture, the mission does not exist in the dispatch queue. Your flight crews sleep peacefully, and your planes don't move. You are completely insulated from broker pressure.
+                    </p>
+                </div>
+
+                <div class="border border-slate-100 rounded-xl bg-white p-6 space-y-2">
+                    <h4 class="font-lexend font-bold text-sm text-opsdark">Who actually runs this system?</h4>
+                    <p class="text-xs text-techgray leading-relaxed font-light font-lexend">
+                        Sky Party LTD (RC 8997727). We are aviation purists who believe that charter flights should be run with mathematical precision, not emotional promises.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Handshake / Request Access Modal -->
+    <div 
+        id="handshake-modal" 
+        class="fixed inset-0 bg-opsdark/60 backdrop-blur-md z-[100] flex items-center justify-center p-4 md:p-6 hidden transition-all duration-300"
+    >
+        <div class="max-w-md w-full bg-white border border-slate-100 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+            <!-- Close button -->
+            <button onclick="closeHandshakeModal()" class="absolute top-4 right-4 text-techgray hover:text-opsdark">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-lg bg-fbblue flex items-center justify-center shadow-md">
+                        <span class="text-white text-xl">✈️</span>
+                    </div>
+                    <div>
+                        <h3 class="text-[11px] font-bold text-opsdark uppercase tracking-wider font-syncopate">
+                            Request Access 
+                        </h3>
+                        <p class="text-[9px] text-techgray font-bold uppercase tracking-widest font-syncopate mt-1">Initiate Certainty Protocol</p>
+                    </div>
+                </div>
+
+                <p class="text-xs text-techgray leading-relaxed font-light border-l-2 border-fbblue pl-3 py-1 font-lexend">
+                    To maintain absolute platform integrity, access is exclusively limited to certified aircraft operators and real dispatch units.
+                </p>
+
+                <form id="handshake-form" onsubmit="executeGatewayHandshake(event)" class="space-y-5">
+                    
+                    <div class="space-y-1.5">
+                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Airline / Operator Name</label>
+                        <input 
+                            type="text" 
+                            id="op-org-name"
+                            required
+                            placeholder="e.g. Landmark Charter Ops"
+                            class="w-full bg-slateice border border-slate-200 rounded-lg px-4 py-3 text-sm text-opsdark placeholder-slate-400 focus:outline-none focus:border-fbblue focus:ring-1 focus:ring-fbblue/20 transition-all font-lexend"
+                        />
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Official Flight Ops Email</label>
+                        <input 
+                            type="email" 
+                            id="op-email"
+                            required
+                            placeholder="e.g. ops@landmarkair.com"
+                            class="w-full bg-slateice border border-slate-200 rounded-lg px-4 py-3 text-sm text-opsdark placeholder-slate-400 focus:outline-none focus:border-fbblue focus:ring-1 focus:ring-fbblue/20 transition-all font-lexend"
+                        />
+                    </div>
+
+                    <div class="space-y-1.5">
+                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">CAA ENDORSED AOC Number </label>
+                        <input 
+                            type="text" 
+                            id="op-aoc"
+                            placeholder="ENTER AOC /..."
+                            class="w-full bg-slateice border border-slate-200 rounded-lg px-4 py-3 text-sm text-opsdark placeholder-slate-400 focus:outline-none focus:border-fbblue focus:ring-1 focus:ring-fbblue/20 transition-all font-lexend"
+                        />
+                    </div>
+
+                    <div id="error-feedback-box" class="hidden bg-red-50 border border-red-200 text-red-600 p-4 rounded-lg text-xs space-y-1">
+                        <div class="font-syncopate font-bold uppercase tracking-wider text-[9px]">Check Engine Light</div>
+                        <p id="error-feedback-msg" class="font-light leading-relaxed font-lexend"></p>
+                    </div>
+
+                    <div class="pt-2">
+                        <button 
+                            type="submit"
+                            id="submit-handshake-btn"
+                            class="w-full py-4 sovereign-btn font-syncopate text-white font-bold uppercase text-[10px] rounded-lg tracking-wider transition-all shadow-md"
+                        >
+                            Experience Certainty
+                        </button>
+                    </div>
+                </form>
+
+                <div id="success-release-drawer" class="hidden space-y-4">
+                    <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-lg space-y-3 text-center">
+                        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <span class="font-syncopate text-[10px] font-bold text-emerald-800 uppercase tracking-widest block">Clearance Granted</span>
+                        <p class="text-[12px] text-slate-600 leading-relaxed font-light font-lexend">
+                            Operational handshake matched. Our aviation architects will coordinate with your dispatch team shortly.
+                        </p>
+                    </div>
+                    <button 
+                        onclick="closeHandshakeModal()"
+                        class="w-full text-center block py-4 bg-opsdark font-syncopate text-white font-bold text-[10px] uppercase rounded-lg shadow-lg hover:bg-slate-800 transition duration-300"
+                    >
+                        Return to Base
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- TRUST BAR (Directly beneath the Hero) -->
-    <section class="py-8 border-y border-gray-200 bg-white overflow-hidden shadow-sm">
-        <div id="scroller" class="animate-scroll items-center">
-            <div class="flex space-x-20 px-10 items-center whitespace-nowrap">
-                <span class="font-syncopate-light text-xs text-slate-400">OIL & GAS EXPLORATION LOGISTICS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">TIER-1 BANKING ESCROWS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">MINING CONGLOMERATE CHARTERS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">MULTINATIONAL TELECOM CHIEFS</span>
-            </div>
-            <div class="flex space-x-20 px-10 items-center whitespace-nowrap">
-                <span class="font-syncopate-light text-xs text-slate-400">OIL & GAS EXPLORATION LOGISTICS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">TIER-1 BANKING ESCROWS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">MINING CONGLOMERATE CHARTERS</span>
-                <span class="font-syncopate-light text-xs text-slate-400">MULTINATIONAL TELECOM CHIEFS</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. WHY WE BUILT THIS -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16" id="why-we-built-this">
-        <div class="premium-card p-8 md:p-12 bg-white border border-gray-200 rounded-3xl space-y-6 shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-48 h-48 bg-fbblue/5 rounded-bl-full pointer-events-none"></div>
-            <div class="max-w-3xl space-y-4">
-                <span class="font-syncopate-bold text-[10px] text-fbblue block">OPERATIONAL RATIONALE</span>
-                <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">Why We Built The Architecture</h2>
-                <p class="body-lexend text-gray-600 text-base md:text-lg leading-relaxed font-light">
-                    Aviation already contains enough inherent uncertainty. Weather patterns drift, local airport parameters shift, mechanical system components fail on test cycles, and scheduling coordination hinges on volatile variables. 
-                </p>
-                <p class="body-lexend text-gray-600 text-base md:text-lg leading-relaxed font-light">
-                    However, <strong class="text-slate-900 font-semibold">financial settlement verification, technical regulatory clearance, and mission readiness status</strong> do not need to be left to chance. The platform extracts avoidable human operational noise, establishing a concrete ledger of technical fact so dispatchers and aviators can concentrate entirely on safe execution.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. ARCHITECTURE OF CERTAINTY (The System Decrees) -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 pb-16" id="architecture-of-certainty">
-        <div class="bg-slate-900 text-white p-8 md:p-12 rounded-3xl space-y-8 shadow-xl">
-            <div class="space-y-2">
-                <span class="font-syncopate-bold text-[10px] text-fbblue block">THE THREE COMMAND ENGINE VERDICTS</span>
-                <h3 class="font-syncopate-light text-lg md:text-xl">Systemic Decrees of Operational Truth</h3>
+    <!-- Footer System -->
+    <footer class="border-t border-slate-100 bg-slateice py-12 px-6 md:px-12 z-10 relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start text-xs text-techgray">
+                <span class="font-monument-header text-[11px] text-opsdark">15D WINGS</span>
+                <span class="text-[8px] font-syncopate font-bold tracking-widest text-fbblue uppercase mt-1">ARCHITECTS OF CERTAINTY</span>
+                <span class="mt-2 text-[10px] font-lexend">© 2026 Sky Party LTD RC 8997727. All Rights Reserved.</span>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-6 bg-slate-800/60 rounded-xl border border-slate-700/50 space-y-3">
-                    <span class="text-[9px] font-syncopate-bold text-fbblue block">DASHBOARD DECREE</span>
-                    <h4 class="font-bold text-lg text-white font-lexend">If our dashboard says GO, the money is real.</h4>
-                    <p class="text-xs text-slate-400 font-light font-lexend">Escrow verification settles with Tier-1 banking partners prior to flight authorization. Mobilization capital is protected.</p>
+            <div class="flex flex-col items-center md:items-end space-y-4">
+                <div class="flex flex-wrap justify-center space-x-6 font-syncopate font-bold text-[9px] text-techgray">
+                    <a href="https://15dwings.com.ng/about%20us" class="hover:text-fbblue transition uppercase">About Us</a>
+                    <a href="https://15dwings.com.ng/tos" class="hover:text-fbblue transition uppercase">Terms of Service</a>
+                    <a href="https://15dwings.com.ng/legal" class="hover:text-fbblue transition uppercase">Legal</a>
+                    <a href="#faq" class="hover:text-fbblue transition uppercase">FAQ</a>
                 </div>
-                <div class="p-6 bg-slate-800/60 rounded-xl border border-slate-700/50 space-y-3">
-                    <span class="text-[9px] font-syncopate-bold text-fbblue block">ACTIVATION DECREE</span>
-                    <h4 class="font-bold text-lg text-white font-lexend">If our dashboard says ACTIVATED, the mission is ready.</h4>
-                    <p class="text-xs text-slate-400 font-light font-lexend">Crew declarations, permit confirmations, and fuel allocation manifests have completed direct technical upload.</p>
-                </div>
-                <div class="p-6 bg-slate-800/60 rounded-xl border border-slate-700/50 space-y-3">
-                    <span class="text-[9px] font-syncopate-bold text-fbblue block">CONFIRMATION DECREE</span>
-                    <h4 class="font-bold text-lg text-white font-lexend">If our dashboard says CONFIRMED, certainty exists.</h4>
-                    <p class="text-xs text-slate-400 font-light font-lexend">No verbal promises, tentative scheduling, or broker adjustments. System protocols run solely on confirmed settlement records.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CORE PROBLEMS WE SOLVE FOR YOU -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-12" id="problems">
-        <div class="mb-10 text-center">
-            <h3 class="font-syncopate-light text-xl md:text-2xl text-slate-950 mb-2">
-                THE CORE PROBLEMS WE SOLVE FOR YOU
-            </h3>
-            <span class="font-syncopate-bold text-xs text-fbblue tracking-widest block">
-                INTEGRITY STANDARDS • ELIMINATING ASSUMPTIONS
-            </span>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Problem 1 -->
-            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
-                <span class="font-syncopate-bold text-fbblue text-[10px] block tracking-wider leading-relaxed">01. STOP BURNING RESOURCES FOR IMAGINARY REVENUE</span>
-                <p class="text-xs text-gray-600 font-light leading-relaxed font-lexend">
-                    If the dashboard activates a mission, the money is already secured. No guesswork. No gambling. No fuel purchased on faith.
-                </p>
-            </div>
-
-            <!-- Problem 2 -->
-            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
-                <span class="font-syncopate-bold text-fbblue text-[10px] block tracking-wider leading-relaxed">02. ONE SOURCE OF TRUTH BEATS TWENTY PHONE CALLS</span>
-                <p class="text-xs text-gray-600 font-light leading-relaxed font-lexend">
-                    Everyone has information. Nobody has the same information. The platform removes interpretation and replaces it with visibility.
-                </p>
-            </div>
-
-            <!-- Problem 3 -->
-            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
-                <span class="font-syncopate-bold text-fbblue text-[10px] block tracking-wider leading-relaxed">03. COMPLIANCE SHOULD ACTUALLY MEAN SOMETHING</span>
-                <p class="text-xs text-gray-600 font-light leading-relaxed font-lexend">
-                    Maintaining aircraft, crews, certifications, and documentation isn't cheap. Operators who invest in readiness shouldn't compete with operators who merely sound ready.
-                </p>
-            </div>
-
-            <!-- Problem 4 -->
-            <div class="premium-card p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 bg-white">
-                <span class="font-syncopate-bold text-fbblue text-[10px] block tracking-wider leading-relaxed">04. REALITY IS MORE NUANCED THAN PASS OR FAIL</span>
-                <p class="text-xs text-gray-600 font-light leading-relaxed font-lexend">
-                    Sometimes a document is renewing. Sometimes an inspection is pending. Sometimes life happens. The system understands shades of operational readiness without compromising safety.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. OPERATOR BRIEFING ACADEMY (Micro-Video Onboarding Simulator) -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16" id="briefing-academy">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <div class="lg:col-span-7 space-y-8">
-                <div class="space-y-3">
-                    <span class="font-syncopate-bold text-[10px] text-fbblue block">ACADEMY SEGMENT</span>
-                    <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">The Operator Briefing Academy</h2>
-                    <p class="text-gray-600 font-light text-sm md:text-base leading-relaxed">
-                        Our briefing curriculum isn't corporate marketing. It is a strict technical alignment protocol. Unlock each interactive module below to understand the framework mechanics.
-                    </p>
-                </div>
-
-                <!-- Pre-Access Academy Gate -->
-                <div id="academy-trigger-box" class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl space-y-6 shadow-sm">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-50 p-3 rounded-full text-fbblue">
-                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-base text-slate-950 font-lexend">15D Wings Micro-Academy Portal</h3>
-                            <p class="text-xs text-gray-500 font-lexend">Requires 30 seconds of attention. Zero consultants. Zero marketing fluff.</p>
-                        </div>
-                    </div>
-                    <button onclick="revealAcademy()" class="w-full md:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-xs font-syncopate-bold rounded-xl shadow-md transition duration-300">
-                        <span>LAUNCH ONBOARDING BRIEFING</span>
-                    </button>
-                </div>
-
-                <!-- Interactive Academy Interface -->
-                <div id="academy-portal" class="hidden border border-gray-200 rounded-3xl overflow-hidden bg-white shadow-xl grid grid-cols-1 md:grid-cols-12">
-                    
-                    <!-- Virtual Screen -->
-                    <div class="md:col-span-7 bg-slate-950 p-6 flex flex-col justify-between min-h-[340px] md:min-h-[440px] relative">
-                        <div class="flex justify-between items-center z-10">
-                            <span class="text-[9px] font-mono tracking-widest text-fbblue bg-fbblue/10 px-2.5 py-1" id="active-module-tag">MODULE 1 / 5</span>
-                            <span class="text-[10px] font-mono text-gray-400" id="video-countdown">00:00</span>
-                        </div>
-
-                        <!-- Video Player Component -->
-                        <div class="my-6 text-center space-y-4 z-10">
-                            <div class="w-full h-40 bg-slate-900 rounded-lg overflow-hidden flex items-center justify-center border border-slate-800 relative">
-                                <video id="academy-video-player" class="w-full h-full object-cover hidden" muted playsinline></video>
-                                <div id="academy-video-icon" class="inline-flex h-12 w-12 bg-fbblue/10 rounded-full items-center justify-center border border-fbblue/20 text-fbblue animate-pulse">
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <h4 class="font-semibold text-white text-sm font-lexend" id="main-player-title">The Plane Doesn't Care About Excuses</h4>
-                            <p class="text-xs text-gray-400 max-w-sm mx-auto leading-relaxed font-lexend px-4" id="main-player-desc">Things happen. Crew members get delayed. Permits take longer. The system handles reality by initiating pre-activation buffers early.</p>
-                        </div>
-
-                        <div class="w-full bg-white/10 h-1 rounded-full overflow-hidden z-10 relative">
-                            <div class="bg-fbblue h-full w-0" id="academy-video-progress"></div>
-                        </div>
-                    </div>
-
-                    <!-- Syllabus Controls -->
-                    <div class="md:col-span-5 bg-slate-50 border-t md:border-t-0 md:border-l border-gray-200 flex flex-col justify-between">
-                        <div class="p-4 border-b border-gray-200 bg-white">
-                            <h3 class="font-bold text-xs font-syncopate-bold text-slate-800">MODULE SYLLABUS</h3>
-                        </div>
-
-                        <div class="divide-y divide-gray-100 overflow-y-auto max-h-[260px] font-lexend">
-                            <button onclick="loadModule(1, 'The Plane Doesn\'t Care About Excuses', 'Things happen. Crew members get delayed. Permits take longer. The system handles reality by initiating pre-activation buffers early.')" class="w-full text-left p-3 hover:bg-white transition flex items-start space-x-2 bg-white" id="mod-btn-1">
-                                <span class="text-xs font-mono font-bold text-fbblue" id="mod-status-1">●</span>
-                                <div class="space-y-0.5"><h4 class="text-xs font-bold text-slate-900">1. Excuses vs Telemetry</h4></div>
-                            </button>
-                            <button onclick="loadModule(2, 'Screenshots Have Never Purchased Jet A-1', 'A payment confirmation screenshot holds zero technical weight. The bank gateway API must verify absolute funds clearance.')" class="w-full text-left p-3 hover:bg-white transition flex items-start space-x-2 opacity-60" id="mod-btn-2" disabled>
-                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-2">○</span>
-                                <div class="space-y-0.5"><h4 class="text-xs font-bold text-slate-900">2. Real Funds vs Promises</h4></div>
-                            </button>
-                            <button onclick="loadModule(3, 'Reliability Leaves Footprints', 'Behavioral footprints do not lie. The system monitors response speeds, document accuracy, and target execution intervals.')" class="w-full text-left p-3 hover:bg-white transition flex items-start space-x-2 opacity-60" id="mod-btn-3" disabled>
-                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-3">○</span>
-                                <div class="space-y-0.5"><h4 class="text-xs font-bold text-slate-900">3. Behavioral Ledger Metrics</h4></div>
-                            </button>
-                            <button onclick="loadModule(4, 'Not Every Mission Is Equally Alive', 'Our Soft, Warm, and Full activation tiers protect operators from deploying flight crews prior to verified capital commitment.')" class="w-full text-left p-3 hover:bg-white transition flex items-start space-x-2 opacity-60" id="mod-btn-4" disabled>
-                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-4">○</span>
-                                <div class="space-y-0.5"><h4 class="text-xs font-bold text-slate-900">4. Activation Tiers Decoded</h4></div>
-                            </button>
-                            <button onclick="loadModule(5, 'Hope Is Not A Backup Plan', 'If primary configurations drift, standby parameters activate automatically. Operational safety demands integrated redundancy.')" class="w-full text-left p-3 hover:bg-white transition flex items-start space-x-2 opacity-60" id="mod-btn-5" disabled>
-                                <span class="text-xs font-mono font-bold text-gray-300" id="mod-status-5">○</span>
-                                <div class="space-y-0.5"><h4 class="text-xs font-bold text-slate-900">5. Tactical System Redundancy</h4></div>
-                            </button>
-                        </div>
-
-                        <div class="p-3 bg-slate-100 text-center">
-                            <button id="academy-next-btn" onclick="simulateActiveModule()" class="w-full py-2 bg-fbblue hover:bg-fbblue/90 text-white font-bold text-[10px] font-syncopate-bold rounded">
-                                START ACTIVE CLIP
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Path to Activation Sidebar Status Map -->
-            <div class="lg:col-span-5">
-                <div class="premium-card p-6 md:p-8 bg-white border border-gray-200 rounded-2xl space-y-6 shadow-sm sticky top-28">
-                    <p class="font-syncopate-bold text-[10px] text-gray-400">YOUR PATH TO ACTIVATION</p>
-                    
-                    <div class="space-y-8 relative pl-6 border-l border-gray-200 font-lexend" id="status-map">
-                        <div class="relative transition duration-300 opacity-100" id="step-1">
-                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-fbblue flex items-center justify-center text-[8px] font-bold text-white ring-4 ring-white">1</span>
-                            <h4 class="text-xs font-syncopate-bold text-slate-900 mb-1">01 — Briefing Academy</h4>
-                            <p class="text-xs text-gray-500 font-light">Complete the 5 technical briefing modules.</p>
-                        </div>
-                        <div class="relative transition duration-300 opacity-40" id="step-2">
-                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-2">2</span>
-                            <h4 class="text-xs font-syncopate-bold text-slate-900 mb-1" id="title-2">02 — Alignment Check</h4>
-                            <p class="text-xs text-gray-500 font-light">Demonstrate operational compliance through our verification check.</p>
-                        </div>
-                        <div class="relative transition duration-300 opacity-40" id="step-3">
-                            <span class="absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-gray-400 ring-4 ring-white" id="badge-3">3</span>
-                            <h4 class="text-xs font-syncopate-bold text-slate-900 mb-1" id="title-3">03 — Credentials unlocked</h4>
-                            <p class="text-xs text-gray-500 font-light">Provide your operational coordinates to claim your dashboard clearance.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 6. FIVE-PILLAR INTEGRITY STANDARD -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16 border-t border-gray-100" id="standards">
-        <div class="max-w-3xl mb-12">
-            <span class="font-syncopate-bold text-[10px] text-fbblue block mb-3">SYSTEM PROTOCOLS</span>
-            <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">The Five-Pillar Integrity Standard</h2>
-            <p class="text-gray-600 font-light font-lexend mt-2">
-                We do not clear a mission for launch unless all five criteria pillars are satisfied. No exceptions are authorized under any circumstance.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 font-lexend">
-            <div class="bg-white border border-gray-200 p-6 rounded-2xl space-y-3">
-                <span class="text-xs font-bold text-fbblue font-mono">PILLAR 01</span>
-                <h4 class="font-bold text-slate-900 text-sm uppercase">PERMIT INTEGRITY</h4>
-                <p class="text-xs text-gray-500 font-light">Direct digital clearance from regulatory air traffic control bodies uploaded and validated via SHA hashes.</p>
-            </div>
-            <div class="bg-white border border-gray-200 p-6 rounded-2xl space-y-3">
-                <span class="text-xs font-bold text-fbblue font-mono">PILLAR 02</span>
-                <h4 class="font-bold text-slate-900 text-sm uppercase">AIRCRAFT INTEGRITY</h4>
-                <p class="text-xs text-gray-500 font-light">Real-time transponder, airworthiness certificate verification, and physical tail availability confirmative logs active.</p>
-            </div>
-            <div class="bg-white border border-gray-200 p-6 rounded-2xl space-y-3">
-                <span class="text-xs font-bold text-fbblue font-mono">PILLAR 03</span>
-                <h4 class="font-bold text-slate-900 text-sm uppercase">CREW INTEGRITY</h4>
-                <p class="text-xs text-gray-500 font-light">Assigned flight deck duty hour validation, license compliance metrics, and direct check-in gates checked.</p>
-            </div>
-            <div class="bg-white border border-gray-200 p-6 rounded-2xl space-y-3">
-                <span class="text-xs font-bold text-fbblue font-mono">PILLAR 04</span>
-                <h4 class="font-bold text-slate-900 text-sm uppercase">FUEL INTEGRITY</h4>
-                <p class="text-xs text-gray-500 font-light">Pre-purchased and allocated fueling release notices delivered directly by localized international fuel handlers.</p>
-            </div>
-            <div class="bg-white border border-gray-200 p-6 rounded-2xl space-y-3">
-                <span class="text-xs font-bold text-fbblue font-mono">PILLAR 05</span>
-                <h4 class="font-bold text-slate-900 text-sm uppercase">CAPITAL SECURITY</h4>
-                <p class="text-xs text-gray-500 font-light">100% of flight mobilization funds settled directly in designated 15D Wings escrow holding accounts.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. CCI FRAMEWORK -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16 bg-slate-50 border-y border-gray-200">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            <div class="lg:col-span-4 space-y-4">
-                <span class="font-syncopate-bold text-[10px] text-fbblue block">QUANTITATIVE RATING</span>
-                <h2 class="font-syncopate-light text-xl text-slate-900">Certainty Coordination Index</h2>
-                <p class="text-gray-600 font-light text-sm leading-relaxed font-lexend">
-                    The platform computes an automated metric (CCI-0 through CCI-3) for every upcoming dispatch. This index determines the depth of operational coordination required.
-                </p>
-            </div>
-            <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 font-lexend">
-                <div class="bg-white p-6 border border-gray-100 rounded-xl space-y-2">
-                    <span class="font-bold text-slate-800 text-sm">CCI-0 (BASE)</span>
-                    <p class="text-xs text-gray-500 font-light">Standard private charters utilizing routine domestic routings with simple parameters. Automated check-in tracking.</p>
-                </div>
-                <div class="bg-white p-6 border border-gray-100 rounded-xl space-y-2">
-                    <span class="font-bold text-slate-800 text-sm">CCI-1 (ELEVATED)</span>
-                    <p class="text-xs text-gray-500 font-light">Multi-leg regional missions requiring custom routing clearances or specialized ground handling agreements.</p>
-                </div>
-                <div class="bg-white p-6 border border-gray-100 rounded-xl space-y-2">
-                    <span class="font-bold text-slate-800 text-sm">CCI-2 (CRITICAL)</span>
-                    <p class="text-xs text-gray-500 font-light">Complex international operations, VIP protection requirements, or strict medical positioning parameters.</p>
-                </div>
-                <div class="bg-white p-6 border border-gray-100 rounded-xl space-y-2">
-                    <span class="font-bold text-slate-800 text-sm">CCI-3 (MAXIMUM CERTAINTY)</span>
-                    <p class="text-xs text-gray-500 font-light">Maximum security, diplomatic, or critical emergency response operations. Full human-telemetry integration.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. ACTIVATION TIERS -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16">
-        <div class="max-w-3xl mb-12">
-            <span class="font-syncopate-bold text-[10px] text-fbblue block mb-3">STATE LOGS</span>
-            <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">The Flight Activation Tiers</h2>
-            <p class="text-gray-600 font-light font-lexend">How the system matches increasing escrow clearance to real-world resource mobilization.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 font-lexend">
-            <div class="premium-card p-6 bg-white border border-gray-200 rounded-2xl space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-slate-900 font-mono">TIER 1</span>
-                    <span class="text-[9px] font-syncopate-bold bg-gray-100 text-gray-500 px-2 py-0.5">SOFT HOLD</span>
-                </div>
-                <h4 class="font-extrabold text-slate-950 text-base">Scheduling Intent Only</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">The flight broker logs a planned charter. The system marks it on the operator dashboard. No crew deployment or fuel procurement is authorized yet.</p>
-            </div>
-            <div class="premium-card p-6 bg-white border border-gray-200 rounded-2xl space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-fbblue font-mono">TIER 2</span>
-                    <span class="text-[9px] font-syncopate-bold bg-blue-50 text-fbblue px-2 py-0.5">WARM ACTIVATION</span>
-                </div>
-                <h4 class="font-extrabold text-slate-950 text-base">Escrow Commitment Visible</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">Mobilization escrow funds cleared. Operator prepares flight permissions, alerts cockpit crew, and issues fuel release drafts.</p>
-            </div>
-            <div class="premium-card p-6 bg-white border border-gray-200 rounded-2xl space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold text-emerald-600 font-mono">TIER 3</span>
-                    <span class="text-[9px] font-syncopate-bold bg-emerald-50 text-emerald-600 px-2 py-0.5">FULL ACTIVATION</span>
-                </div>
-                <h4 class="font-extrabold text-slate-950 text-base">Complete Clearance Released</h4>
-                <p class="text-xs text-gray-500 leading-relaxed font-light">Funds fully settled. Direct dispatch code released. Aircrew activates navigation layout. The mission is 100% committed.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- THE FOUR MAJOR DOCTRINES -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16 border-t border-gray-200" id="doctrines">
-        <div class="max-w-3xl mb-12">
-            <span class="text-xs font-syncopate-bold text-fbblue bg-fbblue/5 border border-fbblue/10 px-3 py-1 inline-block mb-4">SYSTEM PHILOSOPHY</span>
-            <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">The Four Major Doctrines</h2>
-            <p class="text-gray-600 font-light font-lexend mt-2 leading-relaxed">
-                While platform features keep flights tracking on time, these foundational principles determine how the engine analyzes operational reality under critical strain.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-lexend">
-            <!-- Doctrine 1 -->
-            <div class="premium-card p-8 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-                <h4 class="text-[10px] font-syncopate-bold text-fbblue">HOLE #1: THE COST OF UNCERTAINTY</h4>
-                <h3 class="font-extrabold text-xl text-slate-950">Why Certainty Matters</h3>
-                <div class="text-xs text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
-                    <p>Every operator has paid the uncertainty tax. The uncertainty tax looks different every week:</p>
-                    <ul class="space-y-1.5 pl-2 border-l-2 border-fbblue/30 text-gray-500">
-                        <li>• A crew is mobilized for a client that never pays.</li>
-                        <li>• Fuel arrangements are initiated for a mission that disappears.</li>
-                        <li>• Permits are processed for passengers who change their minds.</li>
-                        <li>• Dispatch teams spend hours chasing information that should already exist.</li>
-                    </ul>
-                    <p>Individually these problems feel small. Collectively they cost operators millions of Naira, thousands of staff hours, and countless unnecessary headaches.</p>
-                    <p class="font-medium text-slate-800">The Architecture of Certainty exists to reduce the uncertainty tax.</p>
-                </div>
-            </div>
-
-            <!-- Doctrine 2 -->
-            <div class="premium-card p-8 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-                <h4 class="text-[10px] font-syncopate-bold text-fbblue">HOLE #2: WRITTEN RECORDS OVER MEMORY</h4>
-                <h3 class="font-extrabold text-xl text-slate-950">Memory Is Not An Audit Trail</h3>
-                <div class="text-xs text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
-                    <p>Everybody remembers conversations differently. Everybody remembers promises differently. Everybody remembers timelines differently.</p>
-                    <p class="font-medium text-slate-800 italic">
-                        Aircraft do not care what someone remembers. Regulators do not care what someone remembers. Lawyers definitely do not care what someone remembers.
-                    </p>
-                    <p>That is why operational declarations inside the ecosystem are written, timestamped, and traceable. The platform protects certainty by protecting history.</p>
-                </div>
-            </div>
-
-            <!-- Doctrine 3 -->
-            <div class="premium-card p-8 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-                <h4 class="text-[10px] font-syncopate-bold text-fbblue">HOLE #3: COOPERATIVE RE-ROUTING</h4>
-                <h3 class="font-extrabold text-xl text-slate-950">Losing A Mission Is Better Than Losing A Reputation</h3>
-                <div class="text-xs text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
-                    <p>Sometimes a flight should move to another operator. Not because someone failed. Because certainty changed.</p>
-                    <p>When milestones remain unverified and time buffers begin closing, the platform protects the client journey through cooperative re-routing. This allows the mission to continue while preserving long-term ecosystem trust.</p>
-                    <p class="font-medium text-slate-800 font-lexend">The objective isn't to find fault. The objective is to protect the schedule. That is pure doctrine.</p>
-                </div>
-            </div>
-
-            <!-- Doctrine 4 -->
-            <div class="premium-card p-8 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm relative overflow-hidden group">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-fbblue/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-                <h4 class="text-[10px] font-syncopate-bold text-fbblue">HOLE #4: RANKING CERTAINTY</h4>
-                <h3 class="font-extrabold text-xl text-slate-950">The System Doesn't Reward Popularity</h3>
-                <div class="text-xs text-gray-600 leading-relaxed font-light space-y-3 font-lexend">
-                    <p>We do not rank operators based on personal dynamics or industry political configurations. <strong>We rank certainty.</strong></p>
-                    <p>The platform does not allocate opportunities based on:</p>
-                    <ul class="space-y-1 pl-2 border-l-2 border-fbblue/30 text-gray-500">
-                        <li>• Friendships or industry influence.</li>
-                        <li>• Negotiating tactics or loudness.</li>
-                        <li>• Familiarity or backchannel coordination.</li>
-                    </ul>
-                    <p class="font-medium text-slate-800 mt-2 font-lexend">The platform allocates opportunities based on demonstrated readiness and verified certainty. In simple terms: The most prepared operator wins.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. FAQs SECTION -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16 bg-slate-100/60 rounded-3xl border border-gray-200" id="faqs">
-        <div class="max-w-3xl mb-12">
-            <span class="font-syncopate-bold text-[10px] text-fbblue block mb-2">SYSTEM CLARIFICATIONS</span>
-            <h2 class="font-syncopate-light text-xl md:text-2xl text-slate-900">Frequently Asked Questions</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-lexend text-sm">
-            <div class="space-y-2">
-                <h4 class="font-bold text-slate-900">Do you really wait for absolute escrow clearance before letting my team plan a route?</h4>
-                <p class="text-gray-600 font-light leading-relaxed">Yes. We protect your dispatch crew's schedule like our own. Planning fuel releases or filing international airspace routes based on screenshots is banned on our architecture. The funds must be fully cleared in escrow.</p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-slate-900">How long does a client have to fulfill Tier 2 escrow funds after booking request?</h4>
-                <p class="text-gray-600 font-light leading-relaxed">Each mission possesses a customized countdown gate based on the departure timing threshold. If the client fails to clear their holding escrow prior to gate closure, the request is systematically canceled.</p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-slate-900">What if my aircraft has a mechanical issue? Am I penalized?</h4>
-                <p class="text-gray-600 font-light leading-relaxed">Aviation is reality-driven. Mechanical issues occur. If a fault is logged immediately, cooperative re-routing activates without structural system penalty. Delaying notifications or attempting verbal workarounds is what drops your readiness score.</p>
-            </div>
-            <div class="space-y-2">
-                <h4 class="font-bold text-slate-900">Why are you so strict about written timestamp declarations?</h4>
-                <p class="text-gray-600 font-light leading-relaxed">Because "He said, she said" has never satisfied a civil aviation authority or secured a multi-million Naira fuel release. Clear written documentation keeps the system fast and legal departments silent.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 10. CERTAINTY VERIFICATION CHECK -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 py-16" id="alignment-quiz">
-        <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-3xl relative space-y-8 shadow-sm">
-            <div class="absolute top-0 right-8 transform -translate-y-1/2 bg-fbblue text-white font-syncopate-bold text-[8px] px-3 py-1 rounded-sm shadow-md">
-                ALIGNMENT QUIZ
-            </div>
-
-            <div class="space-y-2">
-                <h3 class="font-syncopate-light text-lg md:text-xl text-slate-950">The Certainty Verification Check</h3>
-                <p class="text-xs text-gray-500 leading-relaxed font-light font-lexend">
-                    Complete this 7-step interactive alignment check to demonstrate that your dispatch and operations teams are ready to operate on our platform framework.
-                </p>
-            </div>
-
-            <!-- Questions Container -->
-            <div class="space-y-6 font-lexend" id="questions-box">
                 
-                <!-- Question 1: Mission Disbursement Response Plan -->
-                <div class="space-y-4 quiz-step" id="q1">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 01 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Mission Disbursement Duty</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">When a real-time flight request is disbursed to your dispatch team via the dashboard, what action is expected to ensure immediate mission compliance?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(1, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                            <span>A) Await direct telephone communication from the flight broker to negotiate crew availability.</span>
-                            <span class="text-[9px] opacity-40 font-mono text-slate-400">A</span>
-                        </button>
-                        <button onclick="answerQuestion(1, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700 font-medium">
-                            <span>B) Respond immediately to the request via the dashboard with the availability of the tail and the full quote for the desired route, tail, and associated metrics.</span>
-                            <span class="text-[9px] opacity-40 font-mono text-slate-400">B</span>
-                        </button>
-                        <button onclick="answerQuestion(1, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                            <span>C) Log the inquiry locally on your dispatch board and process it at the end of the standard shift cycle.</span>
-                            <span class="text-[9px] opacity-40 font-mono text-slate-400">C</span>
-                        </button>
-                        <button onclick="answerQuestion(1, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700">
-                            <span>D) Initiate direct coordination over external messaging channels and wait for informal confirmation.</span>
-                            <span class="text-[9px] opacity-40 font-mono text-slate-400">D</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="space-y-4 quiz-step hidden" id="q2">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 02 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">CCI Framework</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">A charter request requires medical monitoring personnel, specialized routing considerations, and urgent international coordination. Which CCI classification is most appropriate?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(2, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) CCI-0</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(2, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) CCI-1</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(2, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) CCI-2</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(2, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) CCI-3 (Critical Medical & Strategic Asset Handling)</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="space-y-4 quiz-step hidden" id="q3">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 03 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Activation Tiers</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">A mission has entered Warm Activation. Crew members have been alerted. Aircraft positioning has been noted. Permit preparation has begun. What activation tier currently applies?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(3, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Tier 1 — Soft Hold</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(3, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Tier 2 — Warm Activation</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(3, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Tier 3 — Full Activation</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(3, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Cooperative Re-Routing</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="space-y-4 quiz-step hidden" id="q4">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 04 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Pivot Triggers</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">A Pilot-in-Command fails to respond to platform operations requests within the required communication gate. What does the system assume?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(4, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) The pilot is probably busy.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(4, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) The operator should be called repeatedly until someone answers.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(4, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700 font-medium"><span>C) A certainty gap exists and Pivot Protocol evaluation may begin.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(4, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Nothing happens.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- Question 5 -->
-                <div class="space-y-4 quiz-step hidden" id="q5">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 05 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Five-Pillar Integrity Standard</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">Four of the Five Integrity Pillars are complete. Permits verified. Aircraft verified. Crew verified. Fuel verified. Capital Security remains incomplete. Can the mission be released?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(5, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Yes.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(5, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Only if the client is a repeat customer.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(5, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Only with written broker indemnity.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(5, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700 font-medium"><span>D) No.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- Question 6 -->
-                <div class="space-y-4 quiz-step hidden" id="q6">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 06 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Milestone Gates</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">An operator uploads permit documents, fuel evidence and crew declarations before the applicable milestone gates close. What operational outcome is most likely?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(6, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Reduced certainty.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(6, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700 font-medium"><span>B) Increased readiness scoring and uninterrupted mission progression.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(6, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>C) Automatic reclassification to CCI-X.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(6, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) Standby asset activation.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- Question 7 -->
-                <div class="space-y-4 quiz-step hidden" id="q7">
-                    <div class="flex justify-between items-center">
-                        <span class="font-mono text-xs text-fbblue uppercase tracking-wider font-bold">Question 07 of 07</span>
-                        <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 font-mono">Anti-Renegotiation Protection</span>
-                    </div>
-                    <h4 class="font-semibold text-slate-900 text-base">A mission reaches Tier 3 Full Activation. The operator then attempts to introduce additional pricing conditions and new surcharges. How does the platform respond?</h4>
-                    <div class="grid grid-cols-1 gap-3">
-                        <button onclick="answerQuestion(7, 'A')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>A) Renegotiation begins immediately.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">A</span></button>
-                        <button onclick="answerQuestion(7, 'B')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>B) Client approval is requested.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">B</span></button>
-                        <button onclick="answerQuestion(7, 'C')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700 font-medium"><span>C) Mission protection protocols activate and systemic review begins.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">C</span></button>
-                        <button onclick="answerQuestion(7, 'D')" class="w-full text-left p-4 bg-gray-50 border border-gray-100 hover:border-fbblue/30 transition text-sm font-light rounded-lg hover:bg-slate-100/50 flex items-center justify-between text-gray-700"><span>D) The surcharge is automatically accepted.</span><span class="text-[9px] opacity-40 font-mono text-slate-400">D</span></button>
-                    </div>
-                </div>
-
-                <!-- 11. EMAIL COLLECTION MODAL (Unlocked only after passing) -->
-                <div class="space-y-6 py-6 hidden animate-fade-in" id="quiz-success">
-                    <div class="text-center space-y-4">
-                        <div class="inline-flex h-16 w-16 bg-emerald-100 border border-emerald-500/30 text-emerald-600 rounded-full items-center justify-center shadow-md">
-                            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        </div>
-                        <div class="space-y-2 max-w-lg mx-auto">
-                            <h4 class="font-syncopate-bold text-slate-950 text-base md:text-lg">Certification Complete</h4>
-                            <p class="text-sm text-gray-500 leading-relaxed font-lexend">
-                                You have successfully completed the Certainty Verification Check. Your responses indicate alignment with the operational principles that govern the 15D Wings ecosystem. 
-                            </p>
-                            <p class="text-xs text-fbblue bg-fbblue/5 border border-fbblue/10 py-2 px-4 rounded font-mono">
-                                Operational Security Credentials Authorized
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Onboarding On-Demand Data Form -->
-                    <div class="max-w-md mx-auto bg-slate-50 border border-gray-200 p-6 rounded-2xl space-y-4 font-lexend">
-                        <p class="text-xs text-gray-600 font-semibold uppercase tracking-wider text-center font-syncopate-bold">Unlock Operator Application</p>
-                        
-                        <div class="space-y-3">
-                            <div>
-                                <label class="block text-[10px] uppercase text-gray-400 mb-1 font-bold">Operator Company Name</label>
-                                <input type="text" id="op-company" placeholder="e.g. InterState Jets" class="w-full p-3 text-xs bg-white border border-gray-200 focus:outline-none focus:border-fbblue rounded-lg">
-                            </div>
-                            <div>
-                                <label class="block text-[10px] uppercase text-gray-400 mb-1 font-bold">Operational Corporate Email</label>
-                                <input type="email" id="op-email" placeholder="flightops@interstatejets.com" class="w-full p-3 text-xs bg-white border border-gray-200 focus:outline-none focus:border-fbblue rounded-lg">
-                            </div>
-                        </div>
-
-                        <button id="submit-payload-btn" onclick="submitOnboardingPayload()" class="w-full py-3.5 bg-fbblue hover:bg-fbblue/90 text-white font-syncopate-bold text-[10px] rounded-xl font-bold tracking-[0.2em] shadow-lg shadow-fbblue/20 transition duration-300">
-                            SEND MY OPERATOR PACKAGE
-                        </button>
-
-                        <div class="text-center pt-2">
-                            <span class="text-[10px] text-gray-400 block italic leading-relaxed">
-                                No spam. No newsletters. No mysterious marketing funnels.<br>Just the onboarding materials you requested.
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12. THANK YOU PAGE STATE -->
-                <div class="space-y-6 text-center py-10 hidden animate-fade-in font-lexend" id="onboarding-done">
-                    <div class="inline-flex h-20 w-20 bg-blue-100 border border-fbblue/30 text-fbblue rounded-full items-center justify-center shadow-lg">
-                        <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5" />
-                        </svg>
-                    </div>
-                    <div class="space-y-3 max-w-lg mx-auto">
-                        <h4 class="font-syncopate-bold text-slate-950 text-base md:text-lg">Check Your Inbox</h4>
-                        <p class="text-sm text-gray-600">
-                            Our secure Cloudflare engine has generated your dynamic credential signature and synchronized your profile. The <strong>15D Wings Operator Admission Package</strong> has been sent to your corporate email.
-                        </p>
-                        <div class="p-4 bg-slate-50 border border-slate-100 rounded-xl space-y-1.5 text-left text-xs">
-                            <span class="font-bold text-slate-800 block uppercase tracking-wider text-[10px] text-fbblue font-syncopate-bold">What We've Sent:</span>
-                            <p>✓ Welcome Letter & Secure Operator Hash Key</p>
-                            <p>✓ Complete Operator Coordination Brief Document</p>
-                            <p>✓ Required ICAO Compliance Verification Checklist</p>
-                        </div>
-                    </div>
-                    <div class="pt-4 max-w-sm mx-auto">
-                        <a href="https://portal.15dwings.com.ng/operator/dashboard" class="w-full block text-center py-4 bg-slate-900 hover:bg-slate-800 text-white font-syncopate-bold text-[10px] rounded-xl font-bold tracking-[0.2em] shadow-lg transition duration-300">
-                            ENTER COMMAND CENTRE →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Fail State Message -->
-                <div class="space-y-4 text-center py-6 hidden" id="quiz-error">
-                    <div class="inline-flex h-16 w-16 bg-red-100 border border-red-500/30 text-red-600 rounded-full items-center justify-center">
-                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </div>
-                    <p class="text-xs text-red-600 font-mono">ALIGNMENT DRIFT DETECTED. SYSTEM EXPECTS EXACT COMPLIANCE METRICS.</p>
-                    <button onclick="resetQuiz()" class="text-xs font-syncopate-bold text-fbblue underline hover:text-slate-900">RETRY CHECKLIST SYSTEM</button>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Help Direct Feedback -->
-    <section class="max-w-[1450px] mx-auto px-6 md:px-10 mb-16" id="compliance">
-        <div class="premium-card p-6 md:p-10 bg-white border border-gray-200 rounded-3xl space-y-4 shadow-sm flex flex-col md:flex-row justify-between items-center">
-            <div class="space-y-2">
-                <h3 class="font-syncopate-bold text-slate-950 text-xs text-fbblue border-l-2 border-fbblue pl-3">Help Us Improve The System</h3>
-                <p class="text-xs text-gray-500 font-lexend max-w-2xl font-light">
-                    The people who use the platform every day usually spot problems before the architects do. If something feels unclear, unrealistic or unnecessarily complicated, tell us. We're listening.
-                </p>
-            </div>
-            <div class="pt-4 md:pt-0">
-                <a href="mailto:concierge@15dwings.com.ng?subject=System%20Improvement%20Feedback" class="inline-flex items-center text-xs font-bold text-fbblue hover:underline uppercase tracking-wider font-lexend">
-                    Submit Direct Feedback →
+                <a href="mailto:ops@15dwings.com.ng?subject=System%20Improvement%20Feedback" class="inline-flex items-center text-[10px] font-bold text-fbblue hover:underline uppercase tracking-wider font-syncopate transition-all">
+                    SYSTEM IMPROVEMENT FEEDBACK
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 border-t border-gray-200 bg-white px-6 md:px-10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-xs text-gray-500">
-            <div class="flex items-center space-x-3">
-                <img src="https://uploads.onecompiler.io/43z22g7dk/44b5wdtpn/1000301979.png" class="h-4" alt="15D Wings">
-                <span>© 2026 Sky Party LTD RC 8997727. All Rights Reserved.</span>
-            </div>
-            <div class="flex space-x-6 font-syncopate-bold text-[8px]">
-                <span class="text-fbblue font-bold">ARCHITECTS OF CERTAINTY</span>
-                <a href="mailto:concierge@15dwings.com.ng" class="hover:text-fbblue transition">CONTACT OPERATIONS</a>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Navigation & Quiz Logic -->
     <script>
-        // Quiz answers configuration matching standard layout
-        const answers = {
-            1: 'B',
-            2: 'D',
-            3: 'B',
-            4: 'C',
-            5: 'D',
-            6: 'B',
-            7: 'C'
-        };
-        let currentAnswers = {};
-        let score = 0;
-        
-        // Academy tracking parameters
-        let activeModule = 1;
-        let moduleUnlocked = { 1: true, 2: false, 3: false, 4: false, 5: false };
-        let activeProgress = 0;
-        let playInterval = null;
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        // ACADEMY VIDEO URLS - Placeholders to configure custom segments easily
-        const academyVideos = {
-            1: "", 
-            2: "", 
-            3: "", 
-            4: "", 
-            5: ""
-        };
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        function revealAcademy() {
-            document.getElementById('academy-trigger-box').classList.add('hidden');
-            const portal = document.getElementById('academy-portal');
-            portal.classList.remove('hidden');
-            portal.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            playActiveAcademyVideo();
-        }
-
-        function playActiveAcademyVideo() {
-            const player = document.getElementById('academy-video-player');
-            const iconPlaceholder = document.getElementById('academy-video-icon');
-            const activeVideoUrl = academyVideos[activeModule];
-
-            if (activeVideoUrl) {
-                player.src = activeVideoUrl;
-                player.classList.remove('hidden');
-                iconPlaceholder.classList.add('hidden');
-                player.load();
-                player.play().catch(e => console.log("Auto-play blocked by host sandbox boundaries:", e));
-            } else {
-                player.classList.add('hidden');
-                iconPlaceholder.classList.remove('hidden');
+        function openHandshakeModal() {
+            const modal = document.getElementById('handshake-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            if(!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
             }
         }
 
-        function loadModule(modId, title, desc) {
-            if (!moduleUnlocked[modId]) return;
+        function closeHandshakeModal() {
+            const modal = document.getElementById('handshake-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
             
-            clearInterval(playInterval);
-            activeModule = modId;
-            activeProgress = 0;
+            // Reset modal states
+            setTimeout(() => {
+                document.getElementById('handshake-form').classList.remove('hidden');
+                document.getElementById('success-release-drawer').classList.add('hidden');
+                document.getElementById('error-feedback-box').classList.add('hidden');
+                document.getElementById('submit-handshake-btn').disabled = false;
+                document.getElementById('submit-handshake-btn').textContent = "Experience Certainty";
+                document.getElementById('handshake-form').reset();
+            }, 300);
+        }
+
+        async function executeGatewayHandshake(event) {
+            event.preventDefault();
             
-            // UI updates
-            document.getElementById('active-module-tag').textContent = `MODULE ${modId} / 5`;
-            document.getElementById('video-countdown').textContent = "00:00";
-            document.getElementById('academy-video-progress').style.width = "0%";
-            document.getElementById('main-player-title').textContent = title;
-            document.getElementById('main-player-desc').textContent = desc;
-            
-            // Highlight selected module button style
-            for (let i = 1; i <= 5; i++) {
-                const btn = document.getElementById(`mod-btn-${i}`);
-                if (i === modId) {
-                    btn.classList.add('bg-white');
-                } else {
-                    btn.classList.remove('bg-white');
-                }
-            }
-
-            document.getElementById('academy-next-btn').textContent = "START ACTIVE CLIP";
-            playActiveAcademyVideo();
-        }
-
-        function simulateActiveModule() {
-            clearInterval(playInterval);
-            const progress = document.getElementById('academy-video-progress');
-            const countdown = document.getElementById('video-countdown');
-            const nextBtn = document.getElementById('academy-next-btn');
-            const player = document.getElementById('academy-video-player');
-            
-            nextBtn.textContent = "PLAYING...";
-            let duration = 6; // Simulate 6 seconds per segment
-            let seconds = 0;
-
-            if (player && !player.paused) {
-                duration = Math.floor(player.duration) || 6;
-            }
-
-            playInterval = setInterval(() => {
-                seconds++;
-                countdown.textContent = `00:${seconds.toString().padStart(2, '0')}`;
-                
-                let percent = (seconds / duration) * 100;
-                progress.style.width = `${Math.min(percent, 100)}%`;
-
-                if (seconds >= duration) {
-                    clearInterval(playInterval);
-                    nextBtn.textContent = "CLIP COMPLETE";
-                    if (player) player.pause();
-                    
-                    // Mark module status complete
-                    document.getElementById(`mod-status-${activeModule}`).textContent = "✓";
-                    document.getElementById(`mod-status-${activeModule}`).className = "text-xs font-mono font-bold text-emerald-500";
-                    
-                    // Unlock next module
-                    if (activeModule < 5) {
-                        const nextMod = activeModule + 1;
-                        moduleUnlocked[nextMod] = true;
-                        
-                        const nextBtnEl = document.getElementById(`mod-btn-${nextMod}`);
-                        nextBtnEl.classList.remove('opacity-60');
-                        nextBtnEl.removeAttribute('disabled');
-                        
-                        document.getElementById(`mod-status-${nextMod}`).textContent = "●";
-                        document.getElementById(`mod-status-${nextMod}`).className = "text-xs font-mono font-bold text-fbblue";
-                        
-                        nextBtn.textContent = "CONTINUE TO NEXT CLIP";
-                        nextBtn.onclick = () => {
-                            nextBtnEl.click();
-                            nextBtn.onclick = simulateActiveModule;
-                        };
-                    } else {
-                        // All modules complete - light up Step 2 of journey map
-                        document.getElementById('step-1').classList.add('opacity-40');
-                        const step2 = document.getElementById('step-2');
-                        step2.classList.remove('opacity-40');
-                        step2.classList.add('opacity-100');
-                        document.getElementById('badge-2').className = "absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-fbblue flex items-center justify-center text-[8px] font-bold ring-4 ring-white text-white";
-                        nextBtn.textContent = "ACADEMY CLEAR";
-                        
-                        // Scroll user directly to Alignment quiz
-                        setTimeout(() => {
-                            document.getElementById('alignment-quiz').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }, 500);
-                    }
-                }
-            }, 1000);
-        }
-
-        function answerQuestion(qId, selectedOption) {
-            currentAnswers[qId] = selectedOption;
-
-            // Transition logic
-            const currentBox = document.getElementById(`q${qId}`);
-            currentBox.classList.add('hidden');
-
-            if (qId < 7) {
-                const nextBox = document.getElementById(`q${qId + 1}`);
-                nextBox.classList.remove('hidden');
-            } else {
-                evaluateAnswers();
-            }
-        }
-
-        function evaluateAnswers() {
-            score = 0;
-            for (let q in answers) {
-                if (currentAnswers[q] === answers[q]) {
-                    score++;
-                }
-            }
-
-            if (score >= 6) {
-                document.getElementById('quiz-success').classList.remove('hidden');
-                
-                // Update journey map to complete status
-                document.getElementById('step-2').classList.add('opacity-40');
-                
-                // Activate Step 3
-                const step3 = document.getElementById('step-3');
-                step3.classList.remove('opacity-40');
-                step3.classList.add('opacity-100');
-                document.getElementById('badge-3').className = "absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-fbblue flex items-center justify-center text-[8px] font-bold ring-4 ring-white text-white";
-                
-                // Smooth scroll to credentials unlock form
-                document.getElementById('quiz-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                document.getElementById('quiz-error').classList.remove('hidden');
-                document.getElementById('quiz-error').scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        function submitOnboardingPayload() {
-            const company = document.getElementById('op-company').value.trim();
+            const company = document.getElementById('op-org-name').value.trim();
             const email = document.getElementById('op-email').value.trim();
-            const submitBtn = document.getElementById('submit-payload-btn');
+            const aoc = document.getElementById('op-aoc').value.trim();
+            
+            const feedbackBox = document.getElementById('error-feedback-box');
+            const feedbackMsg = document.getElementById('error-feedback-msg');
+            const submitBtn = document.getElementById('submit-handshake-btn');
 
-            if (!company || !email) {
-                alert("Please supply both company name and corporate email operational fields.");
+            feedbackBox.classList.add('hidden');
+
+            // 1. Generic Domain Check
+            const genericDomains = ["gmail.com", "yahoo.com", "outlook.com", "hotmail.com"];
+            const emailDomain = email.split("@")[1]?.toLowerCase();
+            
+            if (genericDomains.includes(emailDomain)) {
+                feedbackBox.classList.remove('hidden');
+                feedbackMsg.textContent = "Please use an official corporate flight ops domain. We don't dispatch commercial aircraft to Gmail accounts.";
                 return;
             }
 
-            submitBtn.textContent = "DISPATCHING SECURE RECORD...";
+            // 2. Strict Aviation AOC Validation Check 
+            // Rejects plain text (e.g., "test", "wrong"), purely numeric short entries, etc.
+            // Matches strict NCAA, common CAA/EASA hyphenations/dots, and alphanumeric FAA layouts.
+            if (aoc) {
+                const aocRegex = /^(NCAA\/AOC\/\d{2}-\d{2}\/\d{3}|[A-Z]{2,3}[\.\-](AOC|CAA)[\.\-][A-Z0-9\.\-]+|[A-Z0-9]{4}[A-Z]|[A-Z0-9]{2,5}[\.\-\/][A-Z0-9\.\-\/]{2,15})$/i;
+                if (!aocRegex.test(aoc)) {
+                    feedbackBox.classList.remove('hidden');
+                    // Security Notice: The error is completely unspecific so bad actors cannot guess the pattern syntax.
+                    feedbackMsg.textContent = "Invalid AOC configuration detected. Access restricted.";
+                    return;
+                }
+            }
+
+            // 3. Prepare Cloudflare Gateway Payload
             submitBtn.disabled = true;
+            submitBtn.textContent = "DISPATCHING SECURE RECORD...";
 
             const payload = {
                 email: email,
                 company_name: company
             };
 
-            // CONNECTS DIRECTLY TO CLOUDFLARE WORKER ROUTER (Bypasses local client bounds safely)
             const workerUrl = "https://operators.15d.name.ng/onboard";
 
-            fetch(workerUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(res => {
-                if (!res.ok) throw new Error("Worker boundary rejected payload verification.");
-                return res.json();
-            })
-            .then((data) => {
-                console.log("Onboarding verification successful:", data);
-                showSuccessLayout();
-            })
-            .catch((err) => {
-                console.error("Cloudflare Worker offline or local sandbox CORS boundary active. Executing mock resolution...", err);
-                // Graceful fallback to guarantee smooth presentation even if Worker URL is not configured yet
-                showSuccessLayout();
-            });
-        }
+            // 4. Fire to Cloudflare Worker API
+            try {
+                const response = await fetch(workerUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-        function showSuccessLayout() {
-            document.getElementById('quiz-success').classList.add('hidden');
-            document.getElementById('onboarding-done').classList.remove('hidden');
-            
-            // Set step 3 complete
-            document.getElementById('step-3').className = "relative transition duration-300 opacity-100";
-            document.getElementById('badge-3').className = "absolute -left-[31px] top-0 h-4 w-4 rounded-full bg-emerald-500 flex items-center justify-center text-[8px] font-bold ring-4 ring-white text-white";
-            
-            document.getElementById('onboarding-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        function resetQuiz() {
-            currentAnswers = {};
-            score = 0;
-            document.getElementById('quiz-error').classList.add('hidden');
-            document.getElementById('q1').classList.remove('hidden');
-            for (let i = 2; i <= 7; i++) {
-                document.getElementById(`q${i}`).classList.add('hidden');
+                if (response.ok) {
+                    document.getElementById('handshake-form').classList.add('hidden');
+                    document.getElementById('success-release-drawer').classList.remove('hidden');
+                } else {
+                    throw new Error("System Transmission Refused.");
+                }
+            } catch (error) {
+                feedbackBox.classList.remove('hidden');
+                feedbackMsg.textContent = "Aviation Architecture Gateway unreachable. Please try again later.";
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Experience Certainty";
             }
-            document.getElementById('quiz-success').classList.add('hidden');
-            document.getElementById('q1').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        // Horizontal Marquee Slider logic
-        let lastScrollTop = 0;
-        const scroller = document.getElementById('scroller');
-
-        function updateSlider() {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            let direction = st > lastScrollTop ? -1 : 1;
-            let currentTransform = new WebKitCSSMatrix(window.getComputedStyle(scroller).transform).m41;
-            let velocity = Math.abs(st - lastScrollTop);
-            let move = (direction * (1 + velocity * 0.15));
-            scroller.style.transform = `translateX(${currentTransform + move}px)`;
-            if (Math.abs(currentTransform) >= scroller.offsetWidth / 2) scroller.style.transform = `translateX(0px)`;
-            lastScrollTop = st <= 0 ? 0 : st;
-            requestAnimationFrame(updateSlider);
-        }
-
-        window.onload = function() {
-            requestAnimationFrame(updateSlider);
         }
     </script>
 </body>
 </html>
+
+
