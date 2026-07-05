@@ -9,11 +9,8 @@
     <title>15D WINGS | Airline Operator Onboarding & Compliance Gateway</title>
     <meta name="description" content="Join the elite network of certified operators backed by automated certainty architecture.">
     <meta name="keywords" content="15D Wings, Operator Onboarding, Private Jet Escrow, Aviation Nigeria, NAMA, NCAA, Sky Party LTD">
-    <meta name="robots" content="noindex, nofollow">
-<!-- Updated Robots directive to allow indexing by search engines and AI agents -->
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 
-    
     <meta property="og:type" content="video.other" />
     <meta property="og:title" content="15D WINGS | Airline Operator Onboarding Gateway" />
     <meta property="og:description" content="Eliminate flight operational uncertainty in private aviation. Join the elite network of certified operators backed by automated architecture of flight operational certainty." />
@@ -100,6 +97,24 @@
             text-transform: uppercase;
             letter-spacing: 0.04em;
         }
+
+        /* Aspect ratio fallbacks for browsers needing strict sizing */
+        .aspect-hero {
+            aspect-ratio: 16/9;
+        }
+        @media (min-width: 768px) {
+            .aspect-hero {
+                aspect-ratio: 21/9;
+            }
+        }
+        .aspect-card-vertical {
+            aspect-ratio: 4/3;
+        }
+        @media (min-width: 1024px) {
+            .aspect-card-vertical {
+                aspect-ratio: 4/5;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-fbblue/10 selection:text-fbblue">
@@ -131,7 +146,7 @@
             </div>
 
             <!-- Mobile Hamburger Toggle -->
-            <button id="mobile-menu-btn" class="lg:hidden text-opsdark focus:outline-none p-2">
+            <button id="mobile-menu-btn" class="lg:hidden text-opsdark focus:outline-none p-2" aria-label="Open Menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -161,7 +176,7 @@
         <div class="absolute top-10 right-10 w-[400px] h-[400px] bg-fbblue/5 rounded-full blur-[140px] pointer-events-none"></div>
 
         <!-- Metaphor Image: Blindfolded Captain Right Under Header -->
-        <div class="w-full max-w-5xl aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)] border border-slate-100 bg-slateice mb-12 relative group">
+        <div class="w-full max-w-5xl aspect-hero rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)] border border-slate-100 bg-slateice mb-12 relative group">
             <img src="https://uploads.onecompiler.io/43z22g7dk/1783256981691/1000601854.png" 
                 alt="Blindfolded Captain flying on promises" 
                 class="w-full h-full object-cover object-[center_30%] transform scale-[1.01] transition-all duration-700 group-hover:scale-105"
@@ -176,9 +191,7 @@
         
         <!-- Elevated Strategic Copy -->
         <div class="max-w-4xl space-y-6 z-10">
-            <span class="text-[9.5px] font-syncopate font-extrabold tracking-[0.3em] text-fbblue uppercase block">
-                
-            </span>
+            <span class="text-[9.5px] font-syncopate font-extrabold tracking-[0.3em] text-fbblue uppercase block"></span>
             
             <h1 class="font-monument-header text-2xl md:text-4xl lg:text-5xl text-opsdark leading-[1.1] max-w-3xl mx-auto">
                 Jet A-1 does not run on <br><span class="text-fbblue">WhatsApp Promises.</span>
@@ -228,7 +241,7 @@
             
             <!-- Left Column: Visual Contrast Cabin Crew -->
             <div class="lg:col-span-5">
-                <div class="relative w-full max-w-md lg:max-w-full aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12)] border border-slate-100 bg-slateice group">
+                <div class="relative w-full max-w-md lg:max-w-full aspect-card-vertical rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12)] border border-slate-100 bg-slateice group">
                     <img 
                         src="https://uploads.onecompiler.io/43z22g7dk/1783202875845/1000601834.png" 
                         alt="Blindfolded Cabin Crew member smiling with receipt band" 
@@ -389,7 +402,7 @@
     >
         <div class="max-w-md w-full bg-white border border-slate-100 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
             <!-- Close button -->
-            <button onclick="closeHandshakeModal()" class="absolute top-4 right-4 text-techgray hover:text-opsdark">
+            <button onclick="closeHandshakeModal()" class="absolute top-4 right-4 text-techgray hover:text-opsdark" aria-label="Close Modal">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
@@ -413,7 +426,7 @@
                 <form id="handshake-form" onsubmit="executeGatewayHandshake(event)" class="space-y-5">
                     
                     <div class="space-y-1.5">
-                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Airline / Operator Name</label>
+                        <label for="op-org-name" class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Airline / Operator Name</label>
                         <input 
                             type="text" 
                             id="op-org-name"
@@ -424,7 +437,7 @@
                     </div>
 
                     <div class="space-y-1.5">
-                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Official Flight Ops Email</label>
+                        <label for="op-email" class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">Official Flight Ops Email</label>
                         <input 
                             type="email" 
                             id="op-email"
@@ -435,7 +448,7 @@
                     </div>
 
                     <div class="space-y-1.5">
-                        <label class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">CAA ENDORSED AOC Number </label>
+                        <label for="op-aoc" class="font-syncopate text-[9px] uppercase font-bold text-techgray tracking-wider">CAA ENDORSED AOC Number </label>
                         <input 
                             type="text" 
                             id="op-aoc"
@@ -564,13 +577,10 @@
             }
 
             // 2. Strict Aviation AOC Validation Check 
-            // Rejects plain text (e.g., "test", "wrong"), purely numeric short entries, etc.
-            // Matches strict NCAA, common CAA/EASA hyphenations/dots, and alphanumeric FAA layouts.
             if (aoc) {
                 const aocRegex = /^(NCAA\/AOC\/\d{2}-\d{2}\/\d{3}|[A-Z]{2,3}[\.\-](AOC|CAA)[\.\-][A-Z0-9\.\-]+|[A-Z0-9]{4}[A-Z]|[A-Z0-9]{2,5}[\.\-\/][A-Z0-9\.\-\/]{2,15})$/i;
                 if (!aocRegex.test(aoc)) {
                     feedbackBox.classList.remove('hidden');
-                    // Security Notice: The error is completely unspecific so bad actors cannot guess the pattern syntax.
                     feedbackMsg.textContent = "Invalid AOC configuration detected. Access restricted.";
                     return;
                 }
@@ -613,5 +623,3 @@
     </script>
 </body>
 </html>
-
-
