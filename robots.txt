@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+# Agent Indexing Directives
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+Sitemap: https://15dwings.com.ng/sitemap.xml
